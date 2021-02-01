@@ -40,7 +40,7 @@ int main()//WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR l
 		//	Update.
 
 		//	Clear the back buffer.
-		d3dDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 255), 1.0f, 0);
+		d3dDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(135, 206, 250), 1.0f, 0);
 
 		//	Begin the scene
 		d3dDevice->BeginScene();

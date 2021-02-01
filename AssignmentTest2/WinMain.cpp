@@ -14,6 +14,17 @@ LRESULT	 CALLBACK WindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 			PostQuitMessage(0);
 		}
 		break;
+	case WM_PAINT:
+	{
+		PAINTSTRUCT ps;
+		HDC hdc = BeginPaint(hWnd, &ps);
+
+		// All painting occurs here, between BeginPaint and EndPaint.
+
+		FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
+
+		EndPaint(hWnd, &ps);
+	}
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
@@ -52,7 +63,7 @@ void GameWin::createGameWindow()
 	RegisterClass(&wndClass);
 
 	//Create the Window.
-	g_hWnd = CreateWindowEx(0, wndClass.lpszClassName, "My Window's Name", WS_OVERLAPPEDWINDOW, 0, 100, 400, 300, NULL, NULL, hInstance, NULL);
+	g_hWnd = CreateWindowEx(0, wndClass.lpszClassName, "My Window's Name", WS_OVERLAPPEDWINDOW, 0, 100, 1000, 800, NULL, NULL, hInstance, NULL);
 	ShowWindow(g_hWnd, 1);
 
 }
