@@ -1,4 +1,4 @@
-#include "WinMain.h"
+#include "systemClass.h"
 #include"resource.h"
 
 LRESULT	 CALLBACK WindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -6,24 +6,14 @@ LRESULT	 CALLBACK WindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 	switch (message)
 	{
 	case WM_DESTROY:
-		PostQuitMessage(0);
-		break;
-	case WM_KEYDOWN:
-		if (wParam == VK_ESCAPE)
-		{
-			PostQuitMessage(0);
-		}
-		break;
-	case WM_PAINT:
 	{
-		PAINTSTRUCT ps;
-		HDC hdc = BeginPaint(hWnd, &ps);
-
-		// All painting occurs here, between BeginPaint and EndPaint.
-
-		FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
-
-		EndPaint(hWnd, &ps);
+		PostQuitMessage(0);
+		return 0;
+	}
+	case WM_CLOSE:
+	{
+		PostQuitMessage(0);
+		return 0;
 	}
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);

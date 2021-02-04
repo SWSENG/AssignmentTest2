@@ -146,11 +146,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="WinMain.h" />
+    <ClInclude Include="systemClass.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="systemClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AssignmentTest2.rc" />
