@@ -145,10 +145,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="gameGraphic.h" />
+    <ClInclude Include="render.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="systemClass.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="gameGraphic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="systemClass.cpp" />
   </ItemGroup>
