@@ -18,8 +18,8 @@ bool GraphicsDevice::Initialize(HWND hWnd, bool windowed)
 	d3dPP.hDeviceWindow = hWnd; //use the window we set up
 	d3dPP.BackBufferFormat = D3DFMT_X8R8G8B8;
 	d3dPP.BackBufferCount = 1;
-	d3dPP.BackBufferWidth = 400;
-	d3dPP.BackBufferHeight = 300;
+	d3dPP.BackBufferWidth = 1280;
+	d3dPP.BackBufferHeight = 720;
 
 	//create the device
 	if (!SUCCEEDED(direct3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL,

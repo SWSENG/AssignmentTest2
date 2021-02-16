@@ -2,48 +2,39 @@
 #include"gameGraphic.h";
 #include<stdio.h>
 #include <d3d9.h>
+#include"gameEngine.h"
 
-//--------------------------------------------------------------------
-//
-int main()//WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
 	GameWin* gWin = new GameWin();
-	gWin->createGameWindow();
-	GraphicsDevice* gDevice = new GraphicsDevice();
-	gDevice->Initialize(gWin->g_hWnd, true);
+	Game* game = new Game();
 
-	while (gWin->loopGameWindow())
+	if (gWin->createGameWindow())
 	{
-		//	To Do:
-		//	Update.
+		MSG msg;
+		game = new Game();
 
-		//	Clear the back buffer.
-		gDevice->Clear(D3DCOLOR_XRGB(0, 100, 100));
+		if (game->Initialize(gWin->g_hWnd, 1280, 720))
+		{
+			while (true)
+			{
+				while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+				{
+					TranslateMessage(&msg);
+					DispatchMessage(&msg);
+				}
+				if (msg.message == WM_QUIT) break;
+				else
+				{
+					game->Run();
+				}
+			}
 
-		//	Begin the scene
-		gDevice->Begin();
+			delete game;
+			delete gWin;
+			return msg.wParam;
+		}
 
-		//	To Do:
-		//	Drawing.
-
-		//	End the scene
-		gDevice->End();
-
-		//	Present the back buffer to screen
-		gDevice->Present();
+		return 0;
 	}
-
-	//	Release the device when exiting.
-	gDevice->~GraphicsDevice();
-	//	Reset pointer to NULL, a good practice.
-	gDevice = NULL;
-
-	gWin->clearGameWindow();
-
-	delete gDevice;
-	gDevice = nullptr;
-	delete gWin;
-	gWin = nullptr;
-
-	return 0;
 }

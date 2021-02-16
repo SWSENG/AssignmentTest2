@@ -39,7 +39,7 @@ GameWin::GameWin()
 	hInstance = GetModuleHandle(NULL);
 }
 
-void GameWin::createGameWindow()
+bool GameWin::createGameWindow()
 {
 	ZeroMemory(&wndClass, sizeof(wndClass));
 
@@ -53,8 +53,10 @@ void GameWin::createGameWindow()
 	RegisterClass(&wndClass);
 
 	//Create the Window.
-	g_hWnd = CreateWindowEx(0, wndClass.lpszClassName, "My Window's Name", WS_OVERLAPPEDWINDOW, 0, 100, 1000, 800, NULL, NULL, hInstance, NULL);
+	g_hWnd = CreateWindowEx(0, wndClass.lpszClassName, "My Window's Name", WS_OVERLAPPEDWINDOW, 0, 100, 1280, 720, NULL, NULL, hInstance, NULL);
 	ShowWindow(g_hWnd, 1);
+
+	return true;
 }
 
 void GameWin::clearGameWindow()

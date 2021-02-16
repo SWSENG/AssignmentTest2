@@ -15,7 +15,7 @@ public:
 	WNDCLASS wndClass;
 	HINSTANCE hInstance;
 	static GameWin* getInstance();
-	void createGameWindow();
+	bool createGameWindow();
 	void clearGameWindow();
 	bool loopGameWindow();
 
