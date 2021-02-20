@@ -22,7 +22,7 @@ bool Game::Initialize(HWND hWnd, int width, int height)
 	}
 
 	player = new GameSprite(100, 200, 250);
-	if (!player->Initialize(gDevice->device, "PlayerPaper.png", 58, 86))
+	if (!player->Initialize(gDevice->device, "Playerpaper.png", 58, 86))
 	{
 		return false;
 	}

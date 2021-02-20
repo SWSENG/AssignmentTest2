@@ -21,9 +21,6 @@
     <ClInclude Include="systemClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="render.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="gameGraphic.h">
       <Filter>Header Files</Filter>
     </ClInclude>

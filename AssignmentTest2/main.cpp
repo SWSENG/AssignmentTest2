@@ -6,7 +6,7 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
-	GameWin* gWin = new GameWin();
+	GameWin* gWin = gWin->getInstance();
 	Game* game = new Game();
 
 	if (gWin->createGameWindow())
@@ -31,7 +31,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			}
 
 			delete game;
-			delete gWin;
 			return msg.wParam;
 		}
 
