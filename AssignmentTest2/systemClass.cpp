@@ -44,7 +44,7 @@ bool GameWin::createGameWindow()
 	ZeroMemory(&wndClass, sizeof(wndClass));
 
 	wndClass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-	wndClass.hCursor = LoadCursor(GetModuleHandle(NULL), MAKEINTRESOURCE(IDC_CURSOR1));
+	wndClass.hCursor = LoadCursor(GetModuleHandle(NULL), MAKEINTRESOURCE(IDC_CURSOR2));
 	wndClass.hInstance = hInstance;	//	GetModuleHandle(NULL);
 	wndClass.lpfnWndProc = WindowProcedure;
 	wndClass.lpszClassName = "My Window";

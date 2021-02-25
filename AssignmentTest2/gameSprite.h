@@ -4,6 +4,7 @@
 //Texture and Sprites and other functions.
 #include <d3dx9.h>
 #include <string>
+#include "gameTime.h"
 
 class GameSprite
 {
@@ -16,7 +17,7 @@ public:
 	GameSprite();
 	GameSprite(float x, float y, float s);
 	~GameSprite();
-
+	//void updateFrame(int frame);
 	//Sprite Functions
 	bool Initialize(LPDIRECT3DDEVICE9 device, std::string file, int width, int height);
 	bool IsInitialized();
@@ -32,6 +33,7 @@ private:
 	D3DCOLOR color;
 	bool initialized;
 	float speed;
+	//GameTime* gameTime;
 };
 
 #endif /* GAMESPRITE_H */

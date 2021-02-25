@@ -125,6 +125,16 @@ void GameSprite::Draw(float gameTime)
 	}
 }
 
+//void GameSprite::updateFrame(int frame)
+//{
+//	int frame = gameTime->framesToUpdate();
+//	for (int i = 0; i < frame; i++)
+//	{
+//		spriteIndex++;
+//		spriteIndex %= 2;
+//	}
+//}
+
 GameSprite::~GameSprite()
 {
 	if (sprite)

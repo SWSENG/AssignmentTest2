@@ -60,17 +60,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_MALAYSIA
 // Cursor
 //
 
-IDC_CURSOR2             CURSOR                  "C:\\Windows\\Cursors\\aero_link.cur"
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Icon
-//
-
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
-IDI_ICON1               ICON                    "C:\\Users\\HP\\OneDrive\\Desktop\\game+controller+video+game+icon-1320087273514764593_32 (2).ico"
+IDC_CURSOR1             CURSOR                  "C:\\Windows\\Cursors\\aero_link.cur"
 
 #endif    // English (Malaysia) resources
 /////////////////////////////////////////////////////////////////////////////

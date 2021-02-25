@@ -33,6 +33,9 @@
     <ClInclude Include="gameCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="gameMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -56,6 +59,9 @@
     <ClCompile Include="gameCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gameMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AssignmentTest2.rc">
@@ -63,12 +69,15 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="aero_ew.cur">
+    <None Include="C:\Windows\Cursors\aero_link.cur">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\HP\OneDrive\Desktop\game+controller+video+game+icon-1320087273514764593_32 (2).ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="enemy2.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

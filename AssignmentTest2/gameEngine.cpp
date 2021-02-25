@@ -16,14 +16,15 @@ bool Game::Initialize(HWND hWnd, int width, int height)
 	camera = new Camera(width, height, 0, DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f));
 
 	background = new GameSprite(0, 0, 0);
-	if (!background->Initialize(gDevice->device, "bg1.png", 1280, 720))
+	if (!background->Initialize(gDevice->device, "background.png", 1280, 720))
 	{
 		return false;
 	}
 
 	player = new GameSprite(100, 200, 250);
-	if (!player->Initialize(gDevice->device, "Playerpaper.png", 58, 86))
+	if (!player->Initialize(gDevice->device, "enemy2.png", 58, 86))
 	{
+		//gameTime->init(60);
 		return false;
 	}
 
@@ -32,6 +33,7 @@ bool Game::Initialize(HWND hWnd, int width, int height)
 	{
 		return false;
 	}
+	
 
 	return true;
 }
@@ -69,7 +71,7 @@ void Game::Update(float gameTime)
 				camera->Unfollow();
 			}
 		}
-
+		
 		camera->Update();
 	}
 

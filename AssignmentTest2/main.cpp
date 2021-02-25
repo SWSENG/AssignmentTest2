@@ -1,10 +1,7 @@
 #include"systemClass.h"
-#include"gameGraphic.h";
-#include<stdio.h>
-#include <d3d9.h>
 #include"gameEngine.h"
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
+int main()//WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
 	GameWin* gWin = gWin->getInstance();
 	Game* game = new Game();

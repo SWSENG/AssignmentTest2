@@ -26,8 +26,8 @@ private:
 
 	GameSprite* background;
 	GameSprite* player;
-
 	GameTime* gameTime;
+
 
 	int width;
 	int height;
