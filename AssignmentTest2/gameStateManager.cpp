@@ -10,7 +10,7 @@ gameStateManager::gameStateManager()
 	currentGameState = level;
 
 	gametimer = new GameTime();
-	gametimer->init(120);
+	gametimer->init(40);
 }
 
 gameStateManager::~gameStateManager()
@@ -52,10 +52,11 @@ void gameStateManager::changeGameState(int index)
 
 void gameStateManager::Update()
 {
+	currentGameState->Update();
 	int frameToUpdate = gametimer->framesToUpdate();
 	for (int i = 0; i < frameToUpdate; i++)
 	{
-		currentGameState->Update();
+		currentGameState->fixedUpdate();
 	}
 
 }

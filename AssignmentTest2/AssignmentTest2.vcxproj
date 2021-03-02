@@ -165,7 +165,6 @@
     <ClCompile Include="gameInput.cpp" />
     <ClCompile Include="gameLevel.cpp" />
     <ClCompile Include="gameSprite.cpp" />
-    <ClCompile Include="gameState.cpp" />
     <ClCompile Include="gameStateManager.cpp" />
     <ClCompile Include="gameTime.cpp" />
     <ClCompile Include="main.cpp" />
@@ -179,7 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\HP\OneDrive\Desktop\game+controller+video+game+icon-1320087273514764593_32 (2).ico" />
-    <Image Include="enemy2.png" />
+    <Image Include="img\PlayerWalk.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

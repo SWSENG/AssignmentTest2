@@ -20,52 +20,105 @@ void gameLevel::init()
 {
 
 	D3DXCreateSprite(GameGraphic::getInstance()->device, &sprite);
-	D3DXCreateTextureFromFileEx(GameGraphic::getInstance()->device, "PlayerPaper.png", D3DX_DEFAULT, D3DX_DEFAULT,
+	D3DXCreateTextureFromFileEx(GameGraphic::getInstance()->device, "img/PlayerWalk.png", D3DX_DEFAULT, D3DX_DEFAULT,
 		D3DX_DEFAULT, NULL, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED,
 		D3DX_DEFAULT, D3DX_DEFAULT, D3DCOLOR_XRGB(255, 255, 255),
 		NULL, NULL, &texture);
-	D3DXCreateFont(GameGraphic::getInstance()->device, 25, 0, 0, 1, false, DEFAULT_CHARSET, OUT_TT_ONLY_PRECIS, DEFAULT_QUALITY,
-		DEFAULT_PITCH | FF_DONTCARE, "Arial", &font);
-	D3DXCreateLine(GameGraphic::getInstance()->device, &line);
 
+	characterSize.x = 56;
+	characterSize.y = 60;
+	characterCurrentFrame = 0;
+
+
+	spriteRect.top = 0;
+	spriteRect.left = 0;
+	spriteRect.right = spriteRect.left + characterSize.x;
+	spriteRect.bottom = spriteRect.top + characterSize.y;
+
+	scaling.x = 2.5f;
+	scaling.y = 2.5f;
+
+	animationTimer = 0;
+	animationDuration = 1.0f / 9;
+	speed = (1.0f / animationDuration) * 80;
+	animationRow = 0;
+
+	isCharacterMoving = false;
+	direction.x = 0;
+	direction.y = 1;
 }
 
 void gameLevel::Update()
 {
-	if (GameInput::getInstance()->MouseButtonClick(DIK_ESCAPE))
+	if (GameInput::getInstance()->KeyboardKeyPressed(DIK_LEFT))
 	{
-		gameStateManager::getInstance()->changeGameState(gameStateManager::LEVEL);
+		animationRow = 2;
+		isCharacterMoving = true;
+		direction.x = 0;
+		direction.y = 1;
+	}
+	else if (GameInput::getInstance()->KeyboardKeyPressed(DIK_UP))
+	{
+		animationRow = 1;
+		isCharacterMoving = true;
+		direction.x = -1;
+		direction.y = 0;
+	}
+	else if (GameInput::getInstance()->KeyboardKeyPressed(DIK_RIGHT))
+	{
+		animationRow = 0;
+		isCharacterMoving = true;
+		direction.x = 0;
+		direction.y = -1;
+	}
+	else if (GameInput::getInstance()->KeyboardKeyPressed(DIK_DOWN))
+	{
+		animationRow = 3;
+		isCharacterMoving = true;
+		direction.x = 1;
+		direction.y = 0;
+	}
+	else
+	{
+		isCharacterMoving = false;
+	}
+}
+
+void gameLevel::fixedUpdate()
+{
+	if (isCharacterMoving)
+	{
+		animationTimer += 1 / 60.0f;
+		D3DXVECTOR2 velocity = direction * (speed / 60.0f);
+		position += velocity;
+	}
+	
+	if (animationTimer >= animationDuration)
+	{
+		animationTimer -= animationDuration;
+		characterCurrentFrame++;
+		characterCurrentFrame %= 4;
 	}
 
-	spriteCentre = D3DXVECTOR2(0, 0);
-	trans = D3DXVECTOR2(GameInput::getInstance()->mousePosition.x, GameInput::getInstance()->mousePosition.y);
-	scaling = D3DXVECTOR2(1.0f, 1.0f);
-	D3DXMatrixTransformation2D(&mat, NULL, 0.0, &scaling, &spriteCentre, rotation, &trans);
+	spriteRect.top = animationRow * characterSize.y;
+	spriteRect.left = characterSize.x * characterCurrentFrame;
+	spriteRect.right = spriteRect.left + characterSize.x;
+	spriteRect.bottom = spriteRect.top + characterSize.y;
 
+	D3DXMatrixTransformation2D(&mat, NULL, 0.0, &scaling, NULL, NULL, &position);
 }
 
 void gameLevel::Draw()
 {
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
 	sprite->SetTransform(&mat);
-	sprite->Draw(texture, NULL, NULL, &D3DXVECTOR3(95 - 24, 415 - 334, 0), D3DCOLOR_XRGB(255, 255, 255));
-	D3DXMatrixTransformation2D(&mat, NULL, 0.0, &scaling, &spriteCentre, rotation, &trans);
-	string str = to_string(hp) + "%";
-	font->DrawText(sprite, str.c_str(), -1, &textRect, DT_NOCLIP | DT_CENTER, D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture, &spriteRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
 	sprite->End();
 
-	D3DXVECTOR2 lineVertices[] = { D3DXVECTOR2(0,0),D3DXVECTOR2(GameInput::getInstance()->mousePosition.x, GameInput::getInstance()->mousePosition.y) };
-	line->Begin();
-	line->Draw(lineVertices, 2, D3DCOLOR_XRGB(0, 0, 0));
-	line->End();
 }
 
 void gameLevel::Release()
 {
-	line->Release();
-	line = NULL;
-	font->Release();
-	font = NULL;
 	sprite->Release();
 	sprite = NULL;
 	texture->Release();

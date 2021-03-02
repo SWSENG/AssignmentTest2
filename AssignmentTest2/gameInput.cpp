@@ -179,3 +179,17 @@ bool GameInput::MouseButtonClick(int button)
 
     return false;
 }
+
+bool GameInput::KeyboardKeyPressed(int code)
+{
+    if (diKeys[code] & 0x80)
+    {
+        previousKeyState = 1;
+    }
+    else if (previousKeyState == 1)
+    {
+        previousKeyState = 0;
+        return true;
+    }
+    return false;
+}

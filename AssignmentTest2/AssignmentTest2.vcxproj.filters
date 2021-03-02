@@ -80,9 +80,6 @@
     <ClCompile Include="gameLevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gameState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gameStateManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -101,7 +98,7 @@
     <Image Include="C:\Users\HP\OneDrive\Desktop\game+controller+video+game+icon-1320087273514764593_32 (2).ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="enemy2.png">
+    <Image Include="img\PlayerWalk.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
