@@ -5,11 +5,12 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 
-class GraphicsDevice
+class GameGraphic
 {
 public:
-	GraphicsDevice();
-	~GraphicsDevice();
+	GameGraphic();
+	~GameGraphic();
+	static GameGraphic* getInstance();
 	bool Initialize(HWND hWnd, bool windowed);
 	void Clear(D3DCOLOR color);
 	void Begin();
@@ -21,6 +22,7 @@ public:
 private:
 	//Private Pointers
 	LPDIRECT3D9 direct3d;
+	static GameGraphic* instance;
 };
 
 #endif

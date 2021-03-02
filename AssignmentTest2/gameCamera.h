@@ -5,21 +5,21 @@
 #include <DirectXMath.h>
 #include "gameSprite.h"
 
-class GraphicsDevice;
+class GameGraphic;
 
 class Camera
 {
 public:
-	//Constructors and Destructor
+	Constructors and Destructor
 	Camera(int width, int height, float angle, DirectX::XMFLOAT3 scaleFactors);
 	~Camera();
 
-	//Game Functions
+	Game Functions
 	void Update();
 	void Follow(GameSprite* following);
 	void Unfollow();
 	bool IsFollowing() const;
-	void SetTransform(GraphicsDevice* gDevice) const;
+	void SetTransform(GameGraphic* gDevice) const;
 
 private:
 	float angle;

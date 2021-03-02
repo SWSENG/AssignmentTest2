@@ -33,7 +33,19 @@
     <ClInclude Include="gameCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gameMap.h">
+    <ClInclude Include="gameBackground.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameStateManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,7 +71,19 @@
     <ClCompile Include="gameCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gameMap.cpp">
+    <ClCompile Include="gameBackground.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameStateManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

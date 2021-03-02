@@ -1,12 +1,13 @@
 #include "gameGraphic.h"
 
+GameGraphic* GameGraphic::instance = 0;
 
-GraphicsDevice::GraphicsDevice()
+GameGraphic::GameGraphic()
 {
 	//Constructor
 }
 
-bool GraphicsDevice::Initialize(HWND hWnd, bool windowed)
+bool GameGraphic::Initialize(HWND hWnd, bool windowed)
 {
 	//Create Direct 3D Pointer
 	direct3d = Direct3DCreate9(D3D_SDK_VERSION);
@@ -23,7 +24,7 @@ bool GraphicsDevice::Initialize(HWND hWnd, bool windowed)
 
 	//create the device
 	if (!SUCCEEDED(direct3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL,
-		hWnd, D3DCREATE_MIXED_VERTEXPROCESSING, &d3dPP,&device)))
+		hWnd, D3DCREATE_MIXED_VERTEXPROCESSING, &d3dPP, &device)))
 	{
 		return false;
 	}
@@ -31,29 +32,39 @@ bool GraphicsDevice::Initialize(HWND hWnd, bool windowed)
 	return true;
 }
 
-void GraphicsDevice::Clear(D3DCOLOR color)
+GameGraphic* GameGraphic::getInstance()
+{
+	if (!instance)
+	{
+		instance = new GameGraphic;
+	}
+
+	return instance;
+}
+
+void GameGraphic::Clear(D3DCOLOR color)
 {
 	//2nd param 'NULL' clears the entire back buffer.
 	device->Clear(0, NULL, D3DCLEAR_TARGET, color, 1.0f, 0);
 }
 
-void GraphicsDevice::Begin()
+void GameGraphic::Begin()
 {
 	device->BeginScene();
 }
 
-void GraphicsDevice::End()
+void GameGraphic::End()
 {
 	device->EndScene();
 }
 
-void GraphicsDevice::Present()
+void GameGraphic::Present()
 {
 	//Present our scene to the window.
 	device->Present(NULL, NULL, NULL, NULL);
 }
 
-GraphicsDevice::~GraphicsDevice()
+GameGraphic::~GameGraphic()
 {
 	if (device)
 	{

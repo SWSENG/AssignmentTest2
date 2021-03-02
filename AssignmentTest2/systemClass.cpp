@@ -71,10 +71,10 @@ bool GameWin::loopGameWindow()
 	ZeroMemory(&msg, sizeof(msg));
 
 	//	if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+	if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 	{
 		//	Receive a quit message
-		if (msg.message == WM_QUIT) break;
+		if (msg.message == WM_QUIT);
 		//	Translate the message 
 		TranslateMessage(&msg);
 		//	Send message to your window procedure

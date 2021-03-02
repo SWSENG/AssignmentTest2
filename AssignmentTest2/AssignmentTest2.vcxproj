@@ -145,20 +145,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="gameBackground.h" />
     <ClInclude Include="gameCamera.h" />
     <ClInclude Include="gameEngine.h" />
     <ClInclude Include="gameGraphic.h" />
-    <ClInclude Include="gameMap.h" />
+    <ClInclude Include="gameInput.h" />
+    <ClInclude Include="gameLevel.h" />
+    <ClInclude Include="gameState.h" />
+    <ClInclude Include="gameStateManager.h" />
     <ClInclude Include="gameTime.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="systemClass.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="gameBackground.cpp" />
     <ClCompile Include="gameCamera.cpp" />
     <ClCompile Include="gameEngine.cpp" />
     <ClCompile Include="gameGraphic.cpp" />
-    <ClCompile Include="gameMap.cpp" />
+    <ClCompile Include="gameInput.cpp" />
+    <ClCompile Include="gameLevel.cpp" />
     <ClCompile Include="gameSprite.cpp" />
+    <ClCompile Include="gameState.cpp" />
+    <ClCompile Include="gameStateManager.cpp" />
     <ClCompile Include="gameTime.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="systemClass.cpp" />

@@ -1,36 +1,33 @@
 #include"systemClass.h"
-#include"gameEngine.h"
+#include"gameGraphic.h"
+#include"gameInput.h"
+#include"gameStateManager.h"
 
 int main()//WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
-	GameWin* gWin = gWin->getInstance();
-	Game* game = new Game();
-
-	if (gWin->createGameWindow())
+	GameWin* gWin = GameWin::getInstance();
+	gWin->createGameWindow();
+	GameGraphic* gGraphic = GameGraphic::getInstance();
+	gGraphic->Initialize(gWin->g_hWnd, true);
+	GameInput* gInput = GameInput::getInstance();
+	gInput->createInput();
+	gameStateManager* gameStateManager = gameStateManager::getInstance();
+	
+	while (gWin->loopGameWindow())
 	{
-		MSG msg;
-		game = new Game();
-
-		if (game->Initialize(gWin->g_hWnd, 1280, 720))
-		{
-			while (true)
-			{
-				while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-				{
-					TranslateMessage(&msg);
-					DispatchMessage(&msg);
-				}
-				if (msg.message == WM_QUIT) break;
-				else
-				{
-					game->Run();
-				}
-			}
-
-			delete game;
-			return msg.wParam;
-		}
-
-		return 0;
+		gInput->update();
+		gGraphic->Clear(0);
+		gGraphic->Begin();
+		gameStateManager->Update();
+		gameStateManager->Draw();
+		gGraphic->End();
+		gGraphic->Present();
 	}
+
+	gameStateManager->releaseInstance();
+	gInput->release();
+	gGraphic->~GameGraphic();
+	gWin->clearGameWindow();
+
+	return 0;
 }
