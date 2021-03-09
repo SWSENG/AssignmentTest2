@@ -1,6 +1,6 @@
 #ifndef GAMEBACKGROUND_H
 #define GAMEBACKGROUND_H
-#include <d3dx9.h>
+#include"gameGraphic.h"
 #include <string>
 
 class GameBackround
@@ -16,7 +16,7 @@ public:
 	//Sprite Functions
 	bool Initialize(LPDIRECT3DDEVICE9 device, std::string file, int width, int height);
 	bool IsInitialized();
-	virtual void Draw(float gameTime);
+	void Draw();
 private:
 	//Pointers
 	LPDIRECT3DTEXTURE9 tex;

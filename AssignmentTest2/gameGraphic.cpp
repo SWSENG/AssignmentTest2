@@ -19,8 +19,8 @@ bool GameGraphic::Initialize(HWND hWnd, bool windowed)
 	d3dPP.hDeviceWindow = hWnd; //use the window we set up
 	d3dPP.BackBufferFormat = D3DFMT_X8R8G8B8;
 	d3dPP.BackBufferCount = 1;
-	d3dPP.BackBufferWidth = 1280;
-	d3dPP.BackBufferHeight = 720;
+	d3dPP.BackBufferWidth = 1200;
+	d3dPP.BackBufferHeight = 1200;
 
 	//create the device
 	if (!SUCCEEDED(direct3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL,
@@ -45,7 +45,7 @@ GameGraphic* GameGraphic::getInstance()
 void GameGraphic::Clear(D3DCOLOR color)
 {
 	//2nd param 'NULL' clears the entire back buffer.
-	device->Clear(0, NULL, D3DCLEAR_TARGET, color, 1.0f, 0);
+	device->Clear(0, NULL, D3DCLEAR_TARGET, (0, 255, 0), 1.0f, 0);
 }
 
 void GameGraphic::Begin()

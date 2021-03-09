@@ -1,7 +1,5 @@
 #include "gameBackground.h"
 
-#include "GameSprite.h"
-
 GameBackround::GameBackround()
 {
 	//Default the sprite to position (0, 0, 0)
@@ -46,12 +44,12 @@ bool GameBackround::IsInitialized()
 	return initialized;
 }
 
-void GameBackround::Draw(float gameTime)
+void GameBackround::Draw()
 {
 	if (background && tex)
 	{
 		//D3DXSPRITE_OBJECTSPACE is needed for the camera to work
-		background->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_OBJECTSPACE);
+		background->Begin(D3DXSPRITE_ALPHABLEND);
 
 		background->Draw(tex, NULL, NULL, &position, color);
 

@@ -1,13 +1,18 @@
 #include "gameStateManager.h"
 #include"gameLevel.h"
+#include"menu.h"
 
 gameStateManager::gameStateManager()
 {
+	gameMenu* firstpage = new gameMenu();
+	firstpage->init();
 	gameLevel* level = new gameLevel();
 	level->init();
+
+	gameStateList.push_back(firstpage);
 	gameStateList.push_back(level);
 
-	currentGameState = level;
+	currentGameState = firstpage;
 
 	gametimer = new GameTime();
 	gametimer->init(40);
