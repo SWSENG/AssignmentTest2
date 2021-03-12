@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="collision.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="flag.h" />
     <ClInclude Include="gameBackground.h" />
     <ClInclude Include="gameCamera.h" />
     <ClInclude Include="gameEngine.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="gameState.h" />
     <ClInclude Include="gameStateManager.h" />
     <ClInclude Include="gameTime.h" />
+    <ClInclude Include="heart.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="resource.h" />
@@ -164,6 +166,7 @@
   <ItemGroup>
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="flag.cpp" />
     <ClCompile Include="gameBackground.cpp" />
     <ClCompile Include="gameCamera.cpp" />
     <ClCompile Include="gameEngine.cpp" />
@@ -173,6 +176,7 @@
     <ClCompile Include="gameSprite.cpp" />
     <ClCompile Include="gameStateManager.cpp" />
     <ClCompile Include="gameTime.cpp" />
+    <ClCompile Include="heart.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="player.cpp" />
@@ -186,6 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\HP\OneDrive\Desktop\game+controller+video+game+icon-1320087273514764593_32 (2).ico" />
+    <Image Include="img\heart.png" />
     <Image Include="img\monster1.1.png" />
     <Image Include="img\PlayerWalk.png" />
   </ItemGroup>

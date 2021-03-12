@@ -23,21 +23,28 @@ void gameLevel::init()
 	drawPlayer->init();
 	drawEnemy = new enemy;
 	drawEnemy->init();
+	drawHeart = new heart();
+	drawHeart->init();
+	drawFlag = new flag();
+	drawFlag->init();
 }
 
 void gameLevel::Update()
 {
+	if (GameInput::getInstance()->KeyboardKeyPressed(DIK_ESCAPE))
+	{
+	PostQuitMessage(0);
+	}
 	drawPlayer->Update();
-	//if (GameInput::getInstance()->KeyboardKeyPressed(DIK_L))
-	//{
-	//	gameStateManager::getInstance()->changeGameState(0);
-	//}
+	drawEnemy->Update();
+	drawFlag->Update();
 }
 
 void gameLevel::fixedUpdate()
 {
 	drawPlayer->fixedUpdate();
 	drawEnemy->fixedUpdate();
+	drawFlag->fixedUpdate();
 }
 
 void gameLevel::Draw()
@@ -45,6 +52,8 @@ void gameLevel::Draw()
 	background->Draw();
 	drawPlayer->Draw();
 	drawEnemy->Draw();
+	drawHeart->Draw();
+	drawFlag->Draw();
 }
 
 void gameLevel::Release()
@@ -55,4 +64,8 @@ void gameLevel::Release()
 	if (drawPlayer) { delete drawPlayer; drawPlayer = nullptr; }
 	drawEnemy->Release();
 	if (drawEnemy) { delete drawEnemy; drawEnemy = nullptr; }
+	drawHeart->Release();
+	if (drawHeart) { delete drawHeart; drawHeart = nullptr; }
+	drawFlag->Release();
+	if (drawFlag) { delete drawFlag; drawFlag = nullptr; }
 }

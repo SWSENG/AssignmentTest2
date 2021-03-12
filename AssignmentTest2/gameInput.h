@@ -13,7 +13,7 @@ private:
     BYTE  diKeys[256];
     DIMOUSESTATE mouseState;
     int previousMouseState[3];
-    int previousKeyState;
+    int previousKeyState[256];
 
     GameInput();
     bool ReadKeyboard();
@@ -33,4 +33,5 @@ public:
     bool MouseButtonPressed(int button);
     bool MouseButtonClick(int button);
     bool KeyboardKeyPressed(int code);
+    bool KeyboardKeyHold(int code);
 };

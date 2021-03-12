@@ -1,7 +1,7 @@
 #pragma once
 #include"gameGraphic.h"
 
-class player
+class heart
 {
 private:
 	LPDIRECT3DTEXTURE9 texture;
@@ -14,19 +14,12 @@ private:
 	D3DXVECTOR2 spriteCentre;
 	D3DXVECTOR2 position;
 	D3DXVECTOR2 scaling;
-	D3DXVECTOR2 characterSize;
-
-	int characterCurrentFrame;
-	float animationDuration;
-	float animationTimer;
-	int animationRow;
-	bool isCharacterMoving;
-	float speed;
+	D3DXVECTOR2 heartSize;
 	D3DXVECTOR2 direction;
 
 public:
-	player();
-	~player();
+	heart();
+	~heart();
 
 	void init();
 	void Update();

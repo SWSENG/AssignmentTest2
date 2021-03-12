@@ -60,6 +60,12 @@
     <ClInclude Include="menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="heart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="flag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -107,6 +113,12 @@
     <ClCompile Include="menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="heart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="flag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AssignmentTest2.rc">
@@ -126,6 +138,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="img\monster1.1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\heart.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

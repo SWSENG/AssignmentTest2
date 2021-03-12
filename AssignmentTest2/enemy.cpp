@@ -2,6 +2,8 @@
 
 enemy::enemy()
 {
+	sprite = NULL;
+	texture = NULL;
 }
 
 enemy::~enemy()
@@ -31,24 +33,42 @@ void enemy::init()
 	enemyRow = 0;
 	isEnemyMoving = false;
 	direction.x = 0;
-	direction.y = 1;
+	direction.y = 0;
 }
 
 void enemy::Update()
 {
 	isEnemyMoving = true;
-	direction.x += 1;
-	direction.y += 1;
+	direction.x = 1;
+	direction.y = 1;
+
+	if (position.x < -50)
+	{
+		position.x = -50;
+	}
+	else if (position.x > 1080)
+	{
+		position.x = 1080;
+	}
+	else if (position.y < 0)
+	{
+		position.y = 0;
+	}
+	else if (position.y > 1080)
+	{
+		position.y = 1080;
+	}
 }
 
 void enemy::fixedUpdate()
 {
 	if (isEnemyMoving)
 	{
-		enemyTimer += 1 / 60.0f;
-		D3DXVECTOR2 velocity = direction * (enemySpeed / 60.0f);
-		position += velocity;
+
 	}
+	enemyTimer += 1 / 60.0f;
+	D3DXVECTOR2 velocity = direction * (enemySpeed / 60.0f);
+	position += velocity;
 	if (enemyTimer >= enemyDuration)
 	{
 		enemyTimer -= enemyDuration;

@@ -1,5 +1,9 @@
 #include "player.h"
 #include"gameInput.h"
+#include<string>
+#include <iostream>
+
+using namespace std;
 
 player::player()
 {
@@ -36,43 +40,62 @@ void player::init()
 	isCharacterMoving = false;
 	direction.x = 0;
 	direction.y = 1;
+	position.x = 500;
+	position.y = 500;
 }
 
 void player::Update()
 {
 	//Player movement update
-	if (GameInput::getInstance()->KeyboardKeyPressed(DIK_LEFT))
-	{
-		animationRow = 2;
-		isCharacterMoving = true;
-		direction.x = 0;
-		direction.y = 1;
-	}
-	else if (GameInput::getInstance()->KeyboardKeyPressed(DIK_UP))
+	if (GameInput::getInstance()->KeyboardKeyHold(DIK_LEFT))
 	{
 		animationRow = 1;
 		isCharacterMoving = true;
 		direction.x = -1;
 		direction.y = 0;
 	}
-	else if (GameInput::getInstance()->KeyboardKeyPressed(DIK_RIGHT))
+	else if (GameInput::getInstance()->KeyboardKeyHold(DIK_UP))
 	{
 		animationRow = 0;
 		isCharacterMoving = true;
 		direction.x = 0;
 		direction.y = -1;
 	}
-	else if (GameInput::getInstance()->KeyboardKeyPressed(DIK_DOWN))
+	else if (GameInput::getInstance()->KeyboardKeyHold(DIK_RIGHT))
 	{
 		animationRow = 3;
 		isCharacterMoving = true;
 		direction.x = 1;
 		direction.y = 0;
 	}
+	else if (GameInput::getInstance()->KeyboardKeyHold(DIK_DOWN))
+	{
+		animationRow = 2;
+		isCharacterMoving = true;
+		direction.x = 0;
+		direction.y = 1;
+	}
 	else
 	{
 		isCharacterMoving = false;
 	}
+	if (position.x < -50)
+	{
+		position.x = -50;
+	}
+	else if (position.x > 1080)
+	{
+		position.x = 1080;
+	}
+	else if (position.y < 0)
+	{
+		position.y = 0;
+	}
+	else if (position.y > 1080)
+	{
+		position.y = 1080;
+	}
+	cout << position.x << "  " << position.y << endl;
 }
 
 void player::fixedUpdate()
