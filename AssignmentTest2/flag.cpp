@@ -2,6 +2,26 @@
 
 flag::flag()
 {
+	sprite = NULL;
+	texture = NULL;
+	flagSize.x = 64;
+	flagSize.y = 80;
+	flagCurrentFrame = 0;
+	flagRect.top = 0;
+	flagRect.left = 0;
+	flagRect.right = flagRect.left + flagSize.x;
+	flagRect.bottom = flagRect.top + flagSize.y;
+	scaling.x = 1.0f;
+	scaling.y = 1.0f;
+	flagTimer = 0;
+	flagDuration = 1.0f / 6;
+	flagSpeed = (1.0f / flagDuration) * 60;
+	flagRow = 0;
+	direction.x = 0;
+	direction.y = 0;
+
+	flagPosition.x = 1 + (rand() % 1080);
+	flagPosition.y = 1 + (rand() % 1080);
 }
 
 flag::~flag()
@@ -16,25 +36,6 @@ void flag::init()
 		D3DX_DEFAULT, D3DX_DEFAULT, D3DCOLOR_XRGB(255, 255, 255),
 		NULL, NULL, &texture);
 
-	//Player init
-	flagSize.x = 256;
-	flagSize.y = 362;
-	flagCurrentFrame = 0;
-	spriteRect.top = 0;
-	spriteRect.left = 0;
-	spriteRect.right = spriteRect.left + flagSize.x;
-	spriteRect.bottom = spriteRect.top + flagSize.y;
-	scaling.x = 0.2f;
-	scaling.y = 0.2f;
-	flagTimer = 0;
-	flagDuration = 1.0f / 6;
-	flagSpeed = (1.0f / flagDuration) * 60;
-	flagRow = 0;
-	direction.x = 0;
-	direction.y = 0;
-
-	position.x = 1 + (rand() % 1280);
-	position.y = 1 + (rand() % 1280);
 }
 
 void flag::Update()
@@ -47,18 +48,18 @@ void flag::fixedUpdate()
 {
 	flagTimer += 1 / 60.0f;
 	D3DXVECTOR2 velocity = direction * (flagSpeed / 60.0f);
-	position += velocity;
+	flagPosition += velocity;
 	if (flagTimer >= flagDuration)
 	{
 		flagTimer -= flagDuration;
 		flagCurrentFrame++;
 		flagCurrentFrame %= 2;
 	}
-	spriteRect.top = flagRow * flagSize.y;
-	spriteRect.left = flagSize.x * flagCurrentFrame;
-	spriteRect.right = spriteRect.left + flagSize.x;
-	spriteRect.bottom = spriteRect.top + flagSize.y;
-	D3DXMatrixTransformation2D(&mat, NULL, 0.0, &scaling, NULL, NULL, &position);
+	flagRect.top = flagRow * flagSize.y;
+	flagRect.left = flagSize.x * flagCurrentFrame;
+	flagRect.right = flagRect.left + flagSize.x;
+	flagRect.bottom = flagRect.top + flagSize.y;
+	D3DXMatrixTransformation2D(&mat, NULL, 0.0, &scaling, NULL, NULL, &flagPosition);
 
 }
 
@@ -66,7 +67,7 @@ void flag::Draw()
 {
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
 	sprite->SetTransform(&mat);
-	sprite->Draw(texture, &spriteRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture, &flagRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
 	sprite->End();
 }
 

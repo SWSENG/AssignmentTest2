@@ -11,7 +11,7 @@ private:
 public:
 	GameWin();
 	static GameWin* instance;
-	HWND g_hWnd = NULL;
+	HWND g_hWnd;
 	WNDCLASS wndClass;
 	HINSTANCE hInstance;
 	static GameWin* getInstance();

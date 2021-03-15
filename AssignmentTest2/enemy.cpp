@@ -4,6 +4,38 @@ enemy::enemy()
 {
 	sprite = NULL;
 	texture = NULL;
+	enemySize.x = 85;
+	enemySize.y = 128;
+	enemyCurrentFrame = 0;
+	enemyRect.top = 0;
+	enemyRect.left = 0;
+	enemyRect.right = enemyRect.left + enemySize.x;
+	enemyRect.bottom = enemyRect.top + enemySize.y;
+	scaling.x = 1.0f;
+	scaling.y = 1.0f;
+	enemyTimer = 0;
+	enemyDuration = 3.0f / 6;
+	enemySpeed = (1.0f / enemyDuration) * 60;
+	enemyRow = 0;
+	isEnemyMoving = false;
+	direction.x = 0;
+	direction.y = 0;
+	enemyPosition[0].x = 100;
+	enemyPosition[0].y = 100;
+	enemyPosition[1].x = 1 + (rand() % 1000);
+	enemyPosition[1].y = 1 + (rand() % 1000);
+	enemyPosition[2].x = 1 + (rand() % 1000);
+	enemyPosition[2].y = 1 + (rand() % 1000);
+	enemyPosition[3].x = 1 + (rand() % 1000);
+	enemyPosition[3].y = 1 + (rand() % 1000);
+	enemyPosition[4].x = 1 + (rand() % 1000);
+	enemyPosition[4].y = 1 + (rand() % 1000);
+	enemyPosition[5].x = 1 + (rand() % 1000);
+	enemyPosition[5].y = 1 + (rand() % 1000);
+	enemyPosition[6].x = 1 + (rand() % 1000);
+	enemyPosition[6].y = 1 + (rand() % 1000);
+	enemyPosition[7].x = 1 + (rand() % 1000);
+	enemyPosition[7].y = 1 + (rand() % 1000);
 }
 
 enemy::~enemy()
@@ -17,23 +49,6 @@ void enemy::init()
 		D3DX_DEFAULT, NULL, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED,
 		D3DX_DEFAULT, D3DX_DEFAULT, D3DCOLOR_XRGB(255, 255, 255),
 		NULL, NULL, &texture);
-
-	enemySize.x = 152;
-	enemySize.y = 256;
-	enemyCurrentFrame = 0;
-	spriteRect.top = 0;
-	spriteRect.left = 0;
-	spriteRect.right = spriteRect.left + enemySize.x;
-	spriteRect.bottom = spriteRect.top + enemySize.y;
-	scaling.x = 0.5f;
-	scaling.y = 0.5f;
-	enemyTimer = 0;
-	enemyDuration = 1.0f / 6;
-	enemySpeed = (1.0f / enemyDuration) * 60;
-	enemyRow = 0;
-	isEnemyMoving = false;
-	direction.x = 0;
-	direction.y = 0;
 }
 
 void enemy::Update()
@@ -41,52 +56,61 @@ void enemy::Update()
 	isEnemyMoving = true;
 	direction.x = 1;
 	direction.y = 1;
-
-	if (position.x < -50)
+	for (int i = 0; i < 7; i++)
 	{
-		position.x = -50;
-	}
-	else if (position.x > 1080)
-	{
-		position.x = 1080;
-	}
-	else if (position.y < 0)
-	{
-		position.y = 0;
-	}
-	else if (position.y > 1080)
-	{
-		position.y = 1080;
+		if (enemyPosition[i].x < -50)
+		{
+			enemyPosition[i].x = -50;
+		}
+		else if (enemyPosition[i].x > 1080)
+		{
+			enemyPosition[i].x = 1080;
+		}
+		else if (enemyPosition[i].y < 0)
+		{
+			enemyPosition[i].y = 0;
+		}
+		else if (enemyPosition[i].y > 1080)
+		{
+			enemyPosition[i].y = 1080;
+		}
 	}
 }
 
 void enemy::fixedUpdate()
 {
-	if (isEnemyMoving)
-	{
+	//if (isEnemyMoving)
+	//{
 
-	}
-	enemyTimer += 1 / 60.0f;
-	D3DXVECTOR2 velocity = direction * (enemySpeed / 60.0f);
-	position += velocity;
-	if (enemyTimer >= enemyDuration)
+	//}
+	for (int i = 0; i < 7; i++)
 	{
-		enemyTimer -= enemyDuration;
-		enemyCurrentFrame++;
-		enemyCurrentFrame %= 4;
+		enemyTimer += 1 / 60.0f;
+		D3DXVECTOR2 velocity = direction * (enemySpeed / 60.0f);
+		enemyPosition[i] += velocity;
+		if (enemyTimer >= enemyDuration)
+		{
+			enemyTimer -= enemyDuration;
+			enemyCurrentFrame++;
+			enemyCurrentFrame %= 6;
+		}
+		enemyRect.top = enemyRow * enemySize.y;
+		enemyRect.left = enemySize.x * enemyCurrentFrame;
+		enemyRect.right = enemyRect.left + enemySize.x;
+		enemyRect.bottom = enemyRect.top + enemySize.y;
+		
 	}
-	spriteRect.top = enemyRow * enemySize.y;
-	spriteRect.left = enemySize.x * enemyCurrentFrame;
-	spriteRect.right = spriteRect.left + enemySize.x;
-	spriteRect.bottom = spriteRect.top + enemySize.y;
-	D3DXMatrixTransformation2D(&mat, NULL, 0.0, &scaling, NULL, NULL, &position);
 }
 
 void enemy::Draw()
 {
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
-	sprite->SetTransform(&mat);
-	sprite->Draw(texture, &spriteRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
+	for (int i = 0; i < 7; i++)
+	{
+		sprite->SetTransform(&mat);
+		D3DXMatrixTransformation2D(&mat, NULL, 0.0, &scaling, NULL, NULL, &enemyPosition[i]);
+		sprite->Draw(texture, &enemyRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
+	}
 	sprite->End();
 }
 

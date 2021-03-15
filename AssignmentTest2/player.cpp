@@ -9,6 +9,30 @@ player::player()
 {
 	sprite = NULL;
 	texture = NULL;
+	characterSize.x = 114;
+	characterSize.y = 128;
+	spriteSize.top = 0;
+	spriteSize.left = 0;
+	spriteSize.right = 55;
+	spriteSize.bottom = 115;
+	characterCurrentFrame = 0;
+	playerRect.top = 0;
+	playerRect.left = 0;
+	playerRect.right = playerRect.left + characterSize.x;
+	playerRect.bottom = playerRect.top + characterSize.y;
+	scaling.x = 1.0f;
+	scaling.y = 1.0f;
+	animationTimer = 0;
+	animationDuration = 1.0f / 9;
+	playerSpeed = (1.0f / animationDuration) * 60;
+	animationRow = 0;
+	isCharacterMoving = false;
+	playerDirection.x = 0;
+	playerDirection.y = 1;
+	playerPosition.x = 500;
+	playerPosition.y = 500;
+	playerCenter.x = 57;
+	playerCenter.y = 64;
 }
 
 player::~player()
@@ -22,26 +46,6 @@ void player::init()
 		D3DX_DEFAULT, NULL, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED,
 		D3DX_DEFAULT, D3DX_DEFAULT, D3DCOLOR_XRGB(255, 255, 255),
 		NULL, NULL, &texture);
-
-	//Player init
-	characterSize.x = 56;
-	characterSize.y = 60;
-	characterCurrentFrame = 0;
-	spriteRect.top = 0;
-	spriteRect.left = 0;
-	spriteRect.right = spriteRect.left + characterSize.x;
-	spriteRect.bottom = spriteRect.top + characterSize.y;
-	scaling.x = 2.5f;
-	scaling.y = 2.5f;
-	animationTimer = 0;
-	animationDuration = 1.0f / 9;
-	speed = (1.0f / animationDuration) * 60;
-	animationRow = 0;
-	isCharacterMoving = false;
-	direction.x = 0;
-	direction.y = 1;
-	position.x = 500;
-	position.y = 500;
 }
 
 void player::Update()
@@ -51,51 +55,51 @@ void player::Update()
 	{
 		animationRow = 1;
 		isCharacterMoving = true;
-		direction.x = -1;
-		direction.y = 0;
+		playerDirection.x = -1;
+		playerDirection.y = 0;
 	}
 	else if (GameInput::getInstance()->KeyboardKeyHold(DIK_UP))
 	{
 		animationRow = 0;
 		isCharacterMoving = true;
-		direction.x = 0;
-		direction.y = -1;
+		playerDirection.x = 0;
+		playerDirection.y = -1;
 	}
 	else if (GameInput::getInstance()->KeyboardKeyHold(DIK_RIGHT))
 	{
 		animationRow = 3;
 		isCharacterMoving = true;
-		direction.x = 1;
-		direction.y = 0;
+		playerDirection.x = 1;
+		playerDirection.y = 0;
 	}
 	else if (GameInput::getInstance()->KeyboardKeyHold(DIK_DOWN))
 	{
 		animationRow = 2;
 		isCharacterMoving = true;
-		direction.x = 0;
-		direction.y = 1;
+		playerDirection.x = 0;
+		playerDirection.y = 1;
 	}
 	else
-	{
+	{	
 		isCharacterMoving = false;
 	}
-	if (position.x < -50)
+	if (playerPosition.x < 0)
 	{
-		position.x = -50;
+		playerPosition.x = 0;
 	}
-	else if (position.x > 1080)
+	else if (playerPosition.x > 1080)
 	{
-		position.x = 1080;
+		playerPosition.x = 1080;
 	}
-	else if (position.y < 0)
+	else if (playerPosition.y < 0)
 	{
-		position.y = 0;
+		playerPosition.y = 0;
 	}
-	else if (position.y > 1080)
+	else if (playerPosition.y > 1080)
 	{
-		position.y = 1080;
+		playerPosition.y = 1080;
 	}
-	cout << position.x << "  " << position.y << endl;
+	//cout << playerPosition.x << "  " << playerPosition.y << endl;
 }
 
 void player::fixedUpdate()
@@ -104,8 +108,8 @@ void player::fixedUpdate()
 	if (isCharacterMoving)
 	{
 		animationTimer += 1 / 60.0f;
-		D3DXVECTOR2 velocity = direction * (speed / 60.0f);
-		position += velocity;
+		D3DXVECTOR2 velocity = playerDirection * (playerSpeed / 60.0f);
+		playerPosition += velocity;
 	}
 	if (animationTimer >= animationDuration)
 	{
@@ -113,18 +117,18 @@ void player::fixedUpdate()
 		characterCurrentFrame++;
 		characterCurrentFrame %= 4;
 	}
-	spriteRect.top = animationRow * characterSize.y;
-	spriteRect.left = characterSize.x * characterCurrentFrame;
-	spriteRect.right = spriteRect.left + characterSize.x;
-	spriteRect.bottom = spriteRect.top + characterSize.y;
-	D3DXMatrixTransformation2D(&mat, NULL, 0.0, &scaling, NULL, NULL, &position);
+	playerRect.top = animationRow * characterSize.y;
+	playerRect.left = characterSize.x * characterCurrentFrame;
+	playerRect.right = playerRect.left + characterSize.x;
+	playerRect.bottom = playerRect.top + characterSize.y;
+	D3DXMatrixTransformation2D(&mat, NULL, 0.0, &scaling, NULL, NULL, &playerPosition);
 }
 
 void player::Draw()
 {
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
 	sprite->SetTransform(&mat);
-	sprite->Draw(texture, &spriteRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture, &playerRect,NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
 	sprite->End();
 }
 
