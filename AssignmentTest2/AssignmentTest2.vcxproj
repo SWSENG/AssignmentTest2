@@ -148,6 +148,7 @@
     <ClInclude Include="collision.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="flag.h" />
+    <ClInclude Include="font.h" />
     <ClInclude Include="gameBackground.h" />
     <ClInclude Include="gameCamera.h" />
     <ClInclude Include="gameEngine.h" />
@@ -167,6 +168,7 @@
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="flag.cpp" />
+    <ClCompile Include="font.cpp" />
     <ClCompile Include="gameBackground.cpp" />
     <ClCompile Include="gameCamera.cpp" />
     <ClCompile Include="gameEngine.cpp" />

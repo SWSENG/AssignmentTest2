@@ -7,7 +7,7 @@ class collision
 public:
 	collision();
 	~collision();
-	bool checkCollision(D3DXVECTOR2 pos1, RECT rect1, D3DXVECTOR2 pos2, RECT rect2);
+	virtual bool checkCollision(D3DXVECTOR2 pos1, RECT rect1, D3DXVECTOR2 pos2, RECT rect2);
 	int checkSideOfCollision(D3DXVECTOR2 pos1, D3DXVECTOR2 pos2);
 
 private:

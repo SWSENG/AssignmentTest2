@@ -94,6 +94,8 @@ void gameLevel::init()
 	drawFlag = new flag();
 	drawFlag->init();
 	D3DXCreateLine(GameGraphic::getInstance()->device, &line);
+	drawFont = new font();
+	drawFont->init();
 }
 
 void gameLevel::Update()
@@ -118,9 +120,8 @@ void gameLevel::fixedUpdate()
 		cout << "flag collide" << endl;
 		score++;
 		cout << score << endl;
-
 	}
-	for (int a = 0; a < 7; a++)
+	for (int a = 0; a < 2; a++)
 	{
 		if (checkCollision(drawPlayer->playerPosition, drawPlayer->spriteSize, drawEnemy->enemyPosition[a], drawEnemy->enemyRect))
 		{
@@ -149,6 +150,7 @@ void gameLevel::Draw()
 	line->Draw(playerVertices, 5, D3DCOLOR_XRGB(100, 255, 120));
 	line->Draw(enemyVertices, 5, D3DCOLOR_XRGB(100, 255, 120));
 	line->End();
+	drawFont->Draw();
 }
 
 void gameLevel::Release()
@@ -165,4 +167,6 @@ void gameLevel::Release()
 	if (drawFlag) { delete drawFlag; drawFlag = nullptr; }
 	line->Release();
 	line = NULL;
+	drawFont->Release();
+	if (drawFont) { delete drawFont; drawFont = nullptr; }
 }

@@ -18,24 +18,13 @@ enemy::enemy()
 	enemySpeed = (1.0f / enemyDuration) * 60;
 	enemyRow = 0;
 	isEnemyMoving = false;
-	direction.x = 0;
-	direction.y = 0;
-	enemyPosition[0].x = 100;
-	enemyPosition[0].y = 100;
-	enemyPosition[1].x = 1 + (rand() % 1000);
-	enemyPosition[1].y = 1 + (rand() % 1000);
-	enemyPosition[2].x = 1 + (rand() % 1000);
-	enemyPosition[2].y = 1 + (rand() % 1000);
-	enemyPosition[3].x = 1 + (rand() % 1000);
-	enemyPosition[3].y = 1 + (rand() % 1000);
-	enemyPosition[4].x = 1 + (rand() % 1000);
-	enemyPosition[4].y = 1 + (rand() % 1000);
-	enemyPosition[5].x = 1 + (rand() % 1000);
-	enemyPosition[5].y = 1 + (rand() % 1000);
-	enemyPosition[6].x = 1 + (rand() % 1000);
-	enemyPosition[6].y = 1 + (rand() % 1000);
-	enemyPosition[7].x = 1 + (rand() % 1000);
-	enemyPosition[7].y = 1 + (rand() % 1000);
+	for (int i = 0; i < 2; i++)
+	{
+		enemyPosition[i].x = 1 + (rand() % 1000);
+		enemyPosition[i].y = 1 + (rand() % 1000);
+		direction.x = 0;
+		direction.y = 0;
+	}
 }
 
 enemy::~enemy()
@@ -55,8 +44,8 @@ void enemy::Update()
 {
 	isEnemyMoving = true;
 	direction.x = 1;
-	direction.y = 1;
-	for (int i = 0; i < 7; i++)
+	direction.y = -1;
+	for (int i = 0; i < 2; i++)
 	{
 		if (enemyPosition[i].x < -50)
 		{
@@ -83,7 +72,7 @@ void enemy::fixedUpdate()
 	//{
 
 	//}
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		enemyTimer += 1 / 60.0f;
 		D3DXVECTOR2 velocity = direction * (enemySpeed / 60.0f);
@@ -98,14 +87,13 @@ void enemy::fixedUpdate()
 		enemyRect.left = enemySize.x * enemyCurrentFrame;
 		enemyRect.right = enemyRect.left + enemySize.x;
 		enemyRect.bottom = enemyRect.top + enemySize.y;
-		
 	}
 }
 
 void enemy::Draw()
 {
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		sprite->SetTransform(&mat);
 		D3DXMatrixTransformation2D(&mat, NULL, 0.0, &scaling, NULL, NULL, &enemyPosition[i]);

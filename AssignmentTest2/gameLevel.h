@@ -7,6 +7,7 @@
 #include"heart.h"
 #include"flag.h"
 #include"collision.h"
+#include"font.h"
 
 class gameLevel :public gameState
 {
@@ -17,6 +18,7 @@ private:
 	heart* drawHeart;
 	flag* drawFlag;
 	collision* collisionObject;
+	font* drawFont;
 
 	LPD3DXLINE line;
 	D3DXVECTOR2 playerVertices[5];
