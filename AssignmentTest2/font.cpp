@@ -29,6 +29,7 @@ void font::init()
 
 void font::Update()
 {
+
 }
 
 void font::Draw()

@@ -107,7 +107,6 @@ void gameLevel::Update()
 	drawPlayer->Update();
 	drawEnemy->Update();
 	drawFlag->Update();
-
 }
 
 void gameLevel::fixedUpdate()
@@ -118,8 +117,8 @@ void gameLevel::fixedUpdate()
 		drawFlag->flagPosition.x = 1 + (rand() % 1000);
 		drawFlag->flagPosition.y = 1 + (rand() % 1000);
 		cout << "flag collide" << endl;
+		cout << score << endl;		
 		score++;
-		cout << score << endl;
 	}
 	for (int a = 0; a < 2; a++)
 	{

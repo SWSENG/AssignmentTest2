@@ -42,26 +42,34 @@ void enemy::init()
 
 void enemy::Update()
 {
-	isEnemyMoving = true;
-	direction.x = 1;
-	direction.y = -1;
+	isEnemyMoving = false;
+	//direction.x = -1;
+	//direction.y = -1;
 	for (int i = 0; i < 2; i++)
 	{
 		if (enemyPosition[i].x < -50)
 		{
-			enemyPosition[i].x = -50;
+			/*enemyPosition[i].x = -50;*/
+			direction.x = 1;
+			direction.y = -1;
 		}
 		else if (enemyPosition[i].x > 1080)
 		{
-			enemyPosition[i].x = 1080;
+			/*enemyPosition[i].x = 1080;*/
+			direction.x = -1;
+			direction.y = 1;
 		}
 		else if (enemyPosition[i].y < 0)
 		{
-			enemyPosition[i].y = 0;
+			/*enemyPosition[i].y = 0;*/
+			direction.x = -1;
+			direction.y = 1;
 		}
 		else if (enemyPosition[i].y > 1080)
 		{
-			enemyPosition[i].y = 1080;
+			/*enemyPosition[i].y = 1080;*/
+			direction.x = 1;
+			direction.y = -1;
 		}
 	}
 }
