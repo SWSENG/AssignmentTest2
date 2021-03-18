@@ -3,14 +3,36 @@
 #include<string>
 #include<iostream>
 #include"gameStateManager.h"
-#include"collision.h"
+//#include"collision.h"
 
 using namespace std;
 
 gameLevel::gameLevel()
 {
-	collisionObject = new (collision);
+	//collisionObject = new (collision);
 	line = NULL;
+
+	score = 10;
+	hp = 20;
+	scoreFont = NULL;
+	hpFont = NULL;
+
+	RECT textRect;
+	textRect.left = 100;
+	textRect.top = 100;
+	textRect.right = 150;
+	textRect.bottom = 125;
+
+	RECT textRect2;
+	textRect2.left = 100;
+	textRect2.top = 100;
+	textRect2.right = 150;
+	textRect2.bottom = 125;
+
+	font1Position.x = 1120;
+	font1Position.y = 20;
+	font2Position.x = 150;
+	font2Position.y = 40;
 }
 
 gameLevel::~gameLevel()
@@ -96,13 +118,22 @@ void gameLevel::init()
 	D3DXCreateLine(GameGraphic::getInstance()->device, &line);
 	drawFont = new font();
 	drawFont->init();
+	D3DXCreateSprite(GameGraphic::getInstance()->device, &sprite);
+	D3DXCreateFont(GameGraphic::getInstance()->device, 50, 0, 0, 1, false,
+		DEFAULT_CHARSET, OUT_TT_ONLY_PRECIS, DEFAULT_QUALITY,
+		DEFAULT_PITCH | FF_DONTCARE, "Arial", &scoreFont);
+
+	D3DXCreateSprite(GameGraphic::getInstance()->device, &sprite1);
+	D3DXCreateFont(GameGraphic::getInstance()->device, 50, 0, 0, 1, false,
+		DEFAULT_CHARSET, OUT_TT_ONLY_PRECIS, DEFAULT_QUALITY,
+		DEFAULT_PITCH | FF_DONTCARE, "Arial", &hpFont);
 }
 
 void gameLevel::Update()
 {
 	if (GameInput::getInstance()->KeyboardKeyPressed(DIK_ESCAPE))
 	{
-	PostQuitMessage(0);
+		PostQuitMessage(0);
 	}
 	drawPlayer->Update();
 	drawEnemy->Update();
@@ -113,24 +144,28 @@ void gameLevel::fixedUpdate()
 {
 	if (checkCollision(drawPlayer->playerPosition, drawPlayer->spriteSize, drawFlag->flagPosition, drawFlag->flagRect))
 	{
-		int score = 0;
 		drawFlag->flagPosition.x = 1 + (rand() % 1000);
 		drawFlag->flagPosition.y = 1 + (rand() % 1000);
 		cout << "flag collide" << endl;
 		cout << score << endl;		
-		score++;
+		score += 10;
 	}
-	for (int a = 0; a < 2; a++)
+	for (int a = 0; a < 4; a++)
 	{
-		if (checkCollision(drawPlayer->playerPosition, drawPlayer->spriteSize, drawEnemy->enemyPosition[a], drawEnemy->enemyRect))
+		if (checkCollision(drawPlayer->playerPosition, drawPlayer->spriteSize, drawEnemy->enemyPosition[a], drawEnemy->sampleEnemyRect))
 		{
 			drawPlayer->isCharacterMoving = false;
 			D3DXVECTOR2 velocity = drawPlayer->playerDirection * (drawPlayer->playerSpeed / 60.0f);
 			drawPlayer->playerPosition -= velocity;
 			cout << "enemy collide" << endl;
 			int i = checkSideOfCollision(drawPlayer->playerPosition, drawEnemy->enemyPosition[a]);
-
 			cout << i << endl;
+			cout << hp << endl;
+			hp -=1;
+			if (hp == 0)
+			{
+				//PostQuitMessage(0);
+			}
 		}
 	}
 	drawPlayer->fixedUpdate();
@@ -150,22 +185,45 @@ void gameLevel::Draw()
 	line->Draw(enemyVertices, 5, D3DCOLOR_XRGB(100, 255, 120));
 	line->End();
 	drawFont->Draw();
+	sprite->Begin(D3DXSPRITE_ALPHABLEND);
+	sprite->SetTransform(&mat);
+
+	string str = to_string(score);
+	D3DXMatrixTransformation2D(&mat, NULL, 0.0, NULL, NULL, NULL, &font1Position);
+	scoreFont->DrawText(sprite, str.c_str(), -1, &textRect, DT_CENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255));
+	sprite->End();
+
+	sprite1->Begin(D3DXSPRITE_ALPHABLEND);
+	sprite1->SetTransform(&mat1);
+	string str2 = to_string(hp);
+	D3DXMatrixTransformation2D(&mat1, NULL, 0.0, NULL, NULL, NULL, &font2Position);
+	hpFont->DrawText(sprite1, str2.c_str(), -1, &textRect2, DT_CENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255));
+	sprite1->End();
 }
 
 void gameLevel::Release()
 {
-	background->~GameBackround();
-	if (background) { delete background; background = nullptr; }
-	drawPlayer->Release();
-	if (drawPlayer) { delete drawPlayer; drawPlayer = nullptr; }
-	drawEnemy->Release();
-	if (drawEnemy) { delete drawEnemy; drawEnemy = nullptr; }
-	drawHeart->Release();
-	if (drawHeart) { delete drawHeart; drawHeart = nullptr; }
-	drawFlag->Release();
-	if (drawFlag) { delete drawFlag; drawFlag = nullptr; }
-	line->Release();
-	line = NULL;
+	sprite1->Release();
+	sprite1 = NULL;
+	hpFont->Release();
+	hpFont = NULL;
+
+	sprite->Release();
+	sprite = NULL;
+	scoreFont->Release();
+	scoreFont = NULL;
 	drawFont->Release();
 	if (drawFont) { delete drawFont; drawFont = nullptr; }
+	line->Release();
+	line = NULL;
+	drawFlag->Release();
+	if (drawFlag) { delete drawFlag; drawFlag = nullptr; }
+	drawHeart->Release();
+	if (drawHeart) { delete drawHeart; drawHeart = nullptr; }
+	drawEnemy->Release();
+	if (drawEnemy) { delete drawEnemy; drawEnemy = nullptr; }
+	drawPlayer->Release();
+	if (drawPlayer) { delete drawPlayer; drawPlayer = nullptr; }
+	background->~GameBackround();
+	if (background) { delete background; background = nullptr; }
 }

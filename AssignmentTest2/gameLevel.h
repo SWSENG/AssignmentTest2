@@ -6,7 +6,7 @@
 #include"player.h"
 #include"heart.h"
 #include"flag.h"
-#include"collision.h"
+//#include"collision.h"
 #include"font.h"
 
 class gameLevel :public gameState
@@ -24,6 +24,18 @@ private:
 	D3DXVECTOR2 playerVertices[5];
 	D3DXVECTOR2 enemyVertices[5];
 
+	LPD3DXFONT scoreFont;
+	LPD3DXFONT hpFont;
+	LPD3DXSPRITE sprite;
+	LPD3DXSPRITE sprite1;
+	RECT textRect;
+	RECT textRect2;
+	D3DXVECTOR2 font1Position;
+	D3DXVECTOR2 font2Position;
+	D3DXMATRIX mat;
+	D3DXMATRIX mat1;
+	int score;
+	int hp;
 public:
 	gameLevel();
 	~gameLevel();

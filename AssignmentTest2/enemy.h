@@ -1,7 +1,8 @@
 #pragma once
 #include"gameGraphic.h"
+#include"collision.h"
 
-class enemy
+class enemy :public collision
 {
 private:
 	LPDIRECT3DTEXTURE9 texture;
@@ -18,13 +19,14 @@ private:
 	float enemyTimer;
 	int enemyRow;
 	float enemySpeed;
-	D3DXVECTOR2 direction;
+	D3DXVECTOR2 direction[8];
 
 public:
 	enemy();
 	~enemy();
 
-	RECT enemyRect;
+	RECT sampleEnemyRect;
+	RECT enemyRect[4];
 	D3DXVECTOR2 enemyPosition[8];
 	bool isEnemyMoving;
 
@@ -33,5 +35,8 @@ public:
 	void fixedUpdate();
 	void Draw();
 	void Release();
+
+	bool checkCollision(D3DXVECTOR2 pos1, RECT rect1, D3DXVECTOR2 pos2, RECT rect2);
+	int checkSideOfCollision(D3DXVECTOR2 pos1, D3DXVECTOR2 pos2);
 };
 
