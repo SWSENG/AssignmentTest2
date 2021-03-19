@@ -25,7 +25,7 @@ player::player()
 	animationTimer = 0;
 	animationDuration = 1.0f / 9;
 	playerSpeed = (1.0f / animationDuration) * 60;
-	animationRow = 2;
+	animationRow = 0;
 	isCharacterMoving = false;
 	playerDirection.x = 0;
 	playerDirection.y = 1;

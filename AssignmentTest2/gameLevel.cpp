@@ -41,8 +41,8 @@ gameLevel::~gameLevel()
 
 bool gameLevel::checkCollision(D3DXVECTOR2 pos1, RECT rect1, D3DXVECTOR2 pos2, RECT rect2)
 {
-	rect1.right = pos1.x + rect1.right - rect1.left+25;
-	rect1.left = pos1.x+25;
+	rect1.right = pos1.x + rect1.right - rect1.left + 25;
+	rect1.left = pos1.x + 25;
 	rect1.bottom = pos1.y + rect1.bottom - rect1.top;
 	rect1.top = pos1.y;
 
@@ -147,7 +147,7 @@ void gameLevel::fixedUpdate()
 		drawFlag->flagPosition.x = 1 + (rand() % 1000);
 		drawFlag->flagPosition.y = 1 + (rand() % 1000);
 		cout << "flag collide" << endl;
-		cout << score << endl;		
+		cout << score << endl;
 		score += 10;
 	}
 	for (int a = 0; a < 4; a++)
@@ -161,13 +161,24 @@ void gameLevel::fixedUpdate()
 			int i = checkSideOfCollision(drawPlayer->playerPosition, drawEnemy->enemyPosition[a]);
 			cout << i << endl;
 			cout << hp << endl;
-			hp -=1;
+			hp -= 1;
 			if (hp == 0)
 			{
 				//PostQuitMessage(0);
 			}
 		}
 	}
+	//for (int a = 0; a < 4; a++)
+	//{
+	//	if (checkCollision(drawEnemy->enemyPosition[a], drawEnemy->enemyRect[a], drawEnemy->enemyPosition[a], drawEnemy->enemyRect[a]))
+	//	{
+	//		drawEnemy->isEnemyMoving = false;
+	//		D3DXVECTOR2 velocity = drawEnemy->direction[a] * (drawEnemy->enemySpeed / 60.0f);
+	//		drawEnemy->enemyPosition[a] -= velocity;
+	//		int i = checkSideOfCollision(drawEnemy->enemyPosition[a], drawEnemy->enemyPosition[a]);
+	//		cout << i << endl;
+	//	}
+	//}
 	drawPlayer->fixedUpdate();
 	drawEnemy->fixedUpdate();
 	drawFlag->fixedUpdate();

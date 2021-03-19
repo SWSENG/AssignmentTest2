@@ -40,11 +40,10 @@ public:
 	gameLevel();
 	~gameLevel();
 	bool checkCollision(D3DXVECTOR2 pos1, RECT rect1, D3DXVECTOR2 pos2, RECT rect2);
-	int checkSideOfCollision(D3DXVECTOR2 pos1, D3DXVECTOR2 pos2);	
+	int checkSideOfCollision(D3DXVECTOR2 pos1, D3DXVECTOR2 pos2);
 	void init();
 	void Update();
 	void fixedUpdate();
 	void Draw();
 	void Release();
 };
-

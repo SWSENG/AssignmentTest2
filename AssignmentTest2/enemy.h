@@ -18,8 +18,6 @@ private:
 	float enemyDuration;
 	float enemyTimer;
 	int enemyRow;
-	float enemySpeed;
-	D3DXVECTOR2 direction[8];
 
 public:
 	enemy();
@@ -29,6 +27,8 @@ public:
 	RECT enemyRect[4];
 	D3DXVECTOR2 enemyPosition[8];
 	bool isEnemyMoving;
+	D3DXVECTOR2 direction[4];
+	float enemySpeed;
 
 	void init();
 	void Update();

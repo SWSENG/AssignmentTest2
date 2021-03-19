@@ -66,27 +66,27 @@ void enemy::Update()
 	{
 		if (enemyPosition[i].x < -50)
 		{
-			/*enemyPosition[i].x = -50;*/
-			direction[i].x = 1;
-			direction[i].y = -1;
+			enemyPosition[i].x = -50;
+			/*direction[i].x = 1;
+			direction[i].y = -1;*/
 		}
 		else if (enemyPosition[i].x > 1080)
 		{
-			/*enemyPosition[i].x = 1080;*/
-			direction[i].x = -1;
-			direction[i].y = -1;
+			enemyPosition[i].x = 1080;
+		/*	direction[i].x = -1;
+			direction[i].y = -1;*/
 		}
 		else if (enemyPosition[i].y < 0)
 		{
-			/*enemyPosition[i].y = 0;*/
-			direction[i].x = 1;
-			direction[i].y = 1;
+			enemyPosition[i].y = 0;
+			//direction[i].x = 1;
+			//direction[i].y = 1;
 		}
 		else if (enemyPosition[i].y > 1080)
 		{
-			/*enemyPosition[i].y = 1080;*/
-			direction[i].x = -1;
-			direction[i].y = -1;
+			enemyPosition[i].y = 1080;
+			//direction[i].x = -1;
+			//direction[i].y = -1;
 		}
 	}
 }
@@ -94,10 +94,20 @@ void enemy::Update()
 void enemy::fixedUpdate()
 {
 	for (int a = 0; a < 4; a++)
-	{
-		if (checkCollision(enemyPosition[a], enemyRect[a], enemyPosition[a], enemyRect[a]))
+	{ 
+		for (int b = 0; b < 4; b++)
 		{
-			int i = checkSideOfCollision(enemyPosition[a], enemyPosition[a]);
+			if (b == a)
+			{
+				continue;
+			}
+			if (checkCollision(enemyPosition[a], enemyRect[a], enemyPosition[b], enemyRect[b]))
+			{
+				//isEnemyMoving = false;
+				D3DXVECTOR2 velocity = direction[a] * (enemySpeed / 60.0f);
+				enemyPosition[a] -= velocity;
+				int i = checkSideOfCollision(enemyPosition[a], enemyPosition[b]);
+			}
 		}
 	}
 	for (int i = 0; i < 4; i++)
