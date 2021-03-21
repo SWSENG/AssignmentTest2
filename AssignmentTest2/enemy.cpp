@@ -34,11 +34,11 @@ enemy::enemy()
 	direction[0].y = 1;
 	enemyPosition[1].x = 1 + (rand() % 1000);
 	enemyPosition[1].y = 1 + (rand() % 1000);
-	direction[1].x = -1;
+	direction[1].x = 1;
 	direction[1].y = -1;
 	enemyPosition[2].x = 1 + (rand() % 1000);
 	enemyPosition[2].y = 1 + (rand() % 1000);
-	direction[2].x = 1;
+	direction[2].x = -1;
 	direction[2].y = 1;
 	enemyPosition[3].x = 1 + (rand() % 1000);
 	enemyPosition[3].y = 1 + (rand() % 1000);
@@ -64,29 +64,29 @@ void enemy::Update()
 
 	for (int i = 0; i < 4; i++)
 	{
-		if (enemyPosition[i].x < -50)
+		if (enemyPosition[i].x < 0)
 		{
-			enemyPosition[i].x = -50;
-			/*direction[i].x = 1;
-			direction[i].y = -1;*/
+			enemyPosition[i].x = 0;
+			direction[i].x *= -1;
+			direction[i].y *= -1;
 		}
 		else if (enemyPosition[i].x > 1080)
 		{
 			enemyPosition[i].x = 1080;
-		/*	direction[i].x = -1;
-			direction[i].y = -1;*/
+			direction[i].x *= -1;
+			direction[i].y *= -1;
 		}
 		else if (enemyPosition[i].y < 0)
 		{
 			enemyPosition[i].y = 0;
-			//direction[i].x = 1;
-			//direction[i].y = 1;
+			direction[i].x *= -1;
+			direction[i].y *= -1;
 		}
 		else if (enemyPosition[i].y > 1080)
 		{
 			enemyPosition[i].y = 1080;
-			//direction[i].x = -1;
-			//direction[i].y = -1;
+			direction[i].x *= -1;
+			direction[i].y *= -1;
 		}
 	}
 }
@@ -106,7 +106,81 @@ void enemy::fixedUpdate()
 				//isEnemyMoving = false;
 				D3DXVECTOR2 velocity = direction[a] * (enemySpeed / 60.0f);
 				enemyPosition[a] -= velocity;
+				enemyPosition[b] -= velocity;
 				int i = checkSideOfCollision(enemyPosition[a], enemyPosition[b]);
+				//cout << i << endl;
+
+				if (enemyRect[a].bottom > enemyRect[b].top || 
+					enemyRect[a].top < enemyRect[b].bottom)
+				{
+					direction[a].y *= -1;
+					direction[b].y *= 1;
+					cout << "hello" << endl;
+				}
+				if (enemyRect[a].right > enemyRect[b].left ||
+					enemyRect[a].left < enemyRect[b].right)
+				{
+					direction[a].x *= -1;
+					direction[b].x *= 1;
+				}
+				//if (enemyRect[a].right || enemyRect[b].right > 1080)
+				//{
+				//	direction[a].x *= -1;
+				//	direction[b].x *= -1;
+				//}
+				//float currentBouncingLeft = enemyPosition[a].x;
+				//float currentBouncingRight = enemyPosition[a].x + 85;
+				//float currentBouncingTop = enemyPosition[a].y;
+				//float currentBouncingBottom = enemyPosition[a].y + 128;
+				//
+				//float nextBouncingLeft = currentBouncingLeft + velocity.x;
+				//float nextBouncingRight = currentBouncingRight + velocity.x;
+				//float nextBouncingTop = currentBouncingTop + velocity.y;
+				//float nextBouncingBottom = currentBouncingBottom + velocity.y;
+
+				//cout << "next boucing bottom"<< nextBouncingBottom <<"enemyRect.top"<< enemyRect[b].bottom << endl;
+
+				//if (nextBouncingBottom > enemyRect[b].top
+				//	&& nextBouncingBottom > enemyRect[b].bottom
+				//	&& nextBouncingRight < enemyRect[b].right
+				//	&& nextBouncingRight < enemyRect[b].left)
+				//{
+				//	cout << "hellooooooooo" << endl;
+				//	if ((currentBouncingRight >= enemyRect[b].left || currentBouncingLeft <= enemyRect[b].right)
+				//		&& (currentBouncingBottom <= enemyRect[b].top || currentBouncingTop >= enemyRect[b].bottom))
+				//	{
+				//		/*velocity.y *= -1; */
+				//		direction[a].y *= -1;
+				//		direction[b].y *= -1;
+				//		cout << "helloooooooooooooooooooooooooooooooooooooooo"<< endl;
+				//	}
+				//	else if ((currentBouncingBottom >= enemyRect[b].top || currentBouncingTop <= enemyRect[b].bottom)
+				//		&& (currentBouncingLeft >= enemyRect[b].right || currentBouncingRight <= enemyRect[b].left))
+				//	{
+				//		//velocity.x *= -1;
+				//		direction[a].x *= -1;
+				//		direction[b].x *= -1;
+				//	}
+				//	else
+				//	{
+				//	}
+
+				//}
+				//else
+				//{
+				//}
+				//if (nextBouncingLeft < 0 || nextBouncingRight > 1080)
+				//{
+				//	//velocity.x *= -1;
+				//	direction[a].y *= -1;
+				//	direction[b].y *= -1;
+				//}
+				//if (nextBouncingTop < 0 || nextBouncingBottom > 1080)
+				//{
+				//	//velocity.y *= -1;
+				//	direction[a].y *= -1;
+				//	direction[b].y *= -1;
+				//}
 			}
 		}
 	}

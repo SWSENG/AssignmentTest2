@@ -19,6 +19,15 @@ private:
 	float enemyTimer;
 	int enemyRow;
 
+	float currentBouncingLeft;
+	float currentBouncingRight;
+	float currentBouncingTop;
+	float currentBouncingBottom;
+
+	float nextBouncingLeft;
+	float nextBouncingRight;
+	float nextBouncingTop;
+	float nextBouncingBottom;
 public:
 	enemy();
 	~enemy();
