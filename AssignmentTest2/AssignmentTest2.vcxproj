@@ -196,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\HP\OneDrive\Desktop\game+controller+video+game+icon-1320087273514764593_32 (2).ico" />
+    <Image Include="img\gameOver.png" />
     <Image Include="img\heart.png" />
     <Image Include="img\monster1.1.png" />
     <Image Include="img\PlayerWalk.png" />

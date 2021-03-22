@@ -34,9 +34,10 @@ private:
 	D3DXVECTOR2 font2Position;
 	D3DXMATRIX mat;
 	D3DXMATRIX mat1;
-	int score;
 	int hp;
 public:
+	int score;
+
 	gameLevel();
 	~gameLevel();
 	bool checkCollision(D3DXVECTOR2 pos1, RECT rect1, D3DXVECTOR2 pos2, RECT rect2);

@@ -1,4 +1,3 @@
-
 #include "gameLevel.h"
 #include"gameInput.h"
 #include<string>
@@ -143,13 +142,19 @@ void gameLevel::Update()
 
 void gameLevel::fixedUpdate()
 {
-	if (checkCollision(drawPlayer->playerPosition, drawPlayer->spriteSize, drawFlag->flagPosition, drawFlag->flagRect))
+	for (int a = 0; a < 4; a++)
 	{
-		drawFlag->flagPosition.x = 1 + (rand() % 1000);
-		drawFlag->flagPosition.y = 1 + (rand() % 1000);
-		cout << "flag collide" << endl;
-		cout << score << endl;
-		score += 10;
+		if (checkCollision(drawPlayer->playerPosition, drawPlayer->spriteSize, drawFlag->flagPosition, drawFlag->flagRect))
+		{
+			drawFlag->flagPosition.x = 1 + (rand() % 1000);
+			drawFlag->flagPosition.y = 1 + (rand() % 1000);
+			cout << "flag collide" << endl;
+			cout << score << endl;
+			score += 10;
+			D3DXVECTOR2 velocity = drawEnemy->direction[a] * (drawEnemy->enemySpeed / 60.0f);
+			drawEnemy->enemySpeed += 2;
+			cout << drawEnemy->enemySpeed << endl;
+		}
 	}
 	for (int a = 0; a < 4; a++)
 	{

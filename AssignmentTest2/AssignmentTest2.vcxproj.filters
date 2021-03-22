@@ -164,5 +164,8 @@
     <Image Include="img\tutorial.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="img\gameOver.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
