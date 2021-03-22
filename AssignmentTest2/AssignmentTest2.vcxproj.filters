@@ -69,6 +69,12 @@
     <ClInclude Include="font.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tutorial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameOver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -125,6 +131,12 @@
     <ClCompile Include="font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tutorial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameOver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AssignmentTest2.rc">
@@ -147,6 +159,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="img\heart.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\tutorial.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -1,16 +1,24 @@
 #include "gameStateManager.h"
 #include"gameLevel.h"
 #include"menu.h"
+#include"tutorial.h"
+#include"gameOver.h"
 
 gameStateManager::gameStateManager()
 {
 	gameMenu* firstpage = new gameMenu();
 	firstpage->init();
+	tutorial* tutorialpage = new tutorial();
+	tutorialpage->init();
 	gameLevel* level = new gameLevel();
 	level->init();
+	gameOver* gameOverpage = new gameOver();
+	gameOverpage->init();
 
 	gameStateList.push_back(firstpage);
+	gameStateList.push_back(tutorialpage);
 	gameStateList.push_back(level);
+	gameStateList.push_back(gameOverpage);
 
 	currentGameState = firstpage;
 

@@ -155,6 +155,7 @@
     <ClInclude Include="gameGraphic.h" />
     <ClInclude Include="gameInput.h" />
     <ClInclude Include="gameLevel.h" />
+    <ClInclude Include="gameOver.h" />
     <ClInclude Include="gameState.h" />
     <ClInclude Include="gameStateManager.h" />
     <ClInclude Include="gameTime.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="systemClass.h" />
+    <ClInclude Include="tutorial.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="collision.cpp" />
@@ -175,6 +177,7 @@
     <ClCompile Include="gameGraphic.cpp" />
     <ClCompile Include="gameInput.cpp" />
     <ClCompile Include="gameLevel.cpp" />
+    <ClCompile Include="gameOver.cpp" />
     <ClCompile Include="gameSprite.cpp" />
     <ClCompile Include="gameStateManager.cpp" />
     <ClCompile Include="gameTime.cpp" />
@@ -183,6 +186,7 @@
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="systemClass.cpp" />
+    <ClCompile Include="tutorial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AssignmentTest2.rc" />
@@ -195,6 +199,7 @@
     <Image Include="img\heart.png" />
     <Image Include="img\monster1.1.png" />
     <Image Include="img\PlayerWalk.png" />
+    <Image Include="img\tutorial.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

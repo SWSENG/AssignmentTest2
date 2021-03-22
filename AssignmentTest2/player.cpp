@@ -80,7 +80,7 @@ void player::Update()
 		playerDirection.y = 1;
 	}
 	else
-	{	
+	{
 		isCharacterMoving = false;
 	}
 	if (playerPosition.x < 0)
@@ -128,7 +128,7 @@ void player::Draw()
 {
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
 	sprite->SetTransform(&mat);
-	sprite->Draw(texture, &playerRect,NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture, &playerRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
 	sprite->End();
 }
 

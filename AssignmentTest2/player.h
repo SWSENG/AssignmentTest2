@@ -18,7 +18,7 @@ private:
 	float animationDuration;
 	float animationTimer;
 	int animationRow;
-	
+
 
 public:
 	player();
@@ -38,4 +38,3 @@ public:
 	void Draw();
 	void Release();
 };
-

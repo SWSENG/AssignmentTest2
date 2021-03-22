@@ -18,8 +18,8 @@ enemy::enemy()
 	scaling.x = 1.0f;
 	scaling.y = 1.0f;
 	enemyTimer = 0;
-	enemyDuration = 3.0f / 6;
-	enemySpeed = (1.0f / enemyDuration) * 60;
+	enemyDuration = 5.0f / 6;
+	enemySpeed = (1.0f / enemyDuration) * 160;
 	enemyRow = 0;
 
 	for (int i = 0; i < 4; i++)
@@ -68,24 +68,24 @@ void enemy::Update()
 		{
 			enemyPosition[i].x = 0;
 			direction[i].x *= -1;
-			direction[i].y *= -1;
+			direction[i].y *= 1;
 		}
 		else if (enemyPosition[i].x > 1080)
 		{
 			enemyPosition[i].x = 1080;
 			direction[i].x *= -1;
-			direction[i].y *= -1;
+			direction[i].y *= 1;
 		}
 		else if (enemyPosition[i].y < 0)
 		{
 			enemyPosition[i].y = 0;
-			direction[i].x *= -1;
+			direction[i].x *= 1;
 			direction[i].y *= -1;
 		}
 		else if (enemyPosition[i].y > 1080)
 		{
 			enemyPosition[i].y = 1080;
-			direction[i].x *= -1;
+			direction[i].x *= 1;
 			direction[i].y *= -1;
 		}
 	}
@@ -123,64 +123,6 @@ void enemy::fixedUpdate()
 					direction[a].x *= -1;
 					direction[b].x *= 1;
 				}
-				//if (enemyRect[a].right || enemyRect[b].right > 1080)
-				//{
-				//	direction[a].x *= -1;
-				//	direction[b].x *= -1;
-				//}
-				//float currentBouncingLeft = enemyPosition[a].x;
-				//float currentBouncingRight = enemyPosition[a].x + 85;
-				//float currentBouncingTop = enemyPosition[a].y;
-				//float currentBouncingBottom = enemyPosition[a].y + 128;
-				//
-				//float nextBouncingLeft = currentBouncingLeft + velocity.x;
-				//float nextBouncingRight = currentBouncingRight + velocity.x;
-				//float nextBouncingTop = currentBouncingTop + velocity.y;
-				//float nextBouncingBottom = currentBouncingBottom + velocity.y;
-
-				//cout << "next boucing bottom"<< nextBouncingBottom <<"enemyRect.top"<< enemyRect[b].bottom << endl;
-
-				//if (nextBouncingBottom > enemyRect[b].top
-				//	&& nextBouncingBottom > enemyRect[b].bottom
-				//	&& nextBouncingRight < enemyRect[b].right
-				//	&& nextBouncingRight < enemyRect[b].left)
-				//{
-				//	cout << "hellooooooooo" << endl;
-				//	if ((currentBouncingRight >= enemyRect[b].left || currentBouncingLeft <= enemyRect[b].right)
-				//		&& (currentBouncingBottom <= enemyRect[b].top || currentBouncingTop >= enemyRect[b].bottom))
-				//	{
-				//		/*velocity.y *= -1; */
-				//		direction[a].y *= -1;
-				//		direction[b].y *= -1;
-				//		cout << "helloooooooooooooooooooooooooooooooooooooooo"<< endl;
-				//	}
-				//	else if ((currentBouncingBottom >= enemyRect[b].top || currentBouncingTop <= enemyRect[b].bottom)
-				//		&& (currentBouncingLeft >= enemyRect[b].right || currentBouncingRight <= enemyRect[b].left))
-				//	{
-				//		//velocity.x *= -1;
-				//		direction[a].x *= -1;
-				//		direction[b].x *= -1;
-				//	}
-				//	else
-				//	{
-				//	}
-
-				//}
-				//else
-				//{
-				//}
-				//if (nextBouncingLeft < 0 || nextBouncingRight > 1080)
-				//{
-				//	//velocity.x *= -1;
-				//	direction[a].y *= -1;
-				//	direction[b].y *= -1;
-				//}
-				//if (nextBouncingTop < 0 || nextBouncingBottom > 1080)
-				//{
-				//	//velocity.y *= -1;
-				//	direction[a].y *= -1;
-				//	direction[b].y *= -1;
-				//}
 			}
 		}
 	}

@@ -1,6 +1,5 @@
 #pragma once
 #include"gameGraphic.h"
-#include"player.h"
 
 class collision
 {

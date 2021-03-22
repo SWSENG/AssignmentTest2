@@ -17,7 +17,9 @@ private:
 public:
 	enum GAMESTATENAME {
 		MAIN,
-		LEVEL
+		TUTORIAL,
+		LEVEL,
+		GAMEOVER
 	};
 	static gameStateManager* getInstance();
 	static void releaseInstance();

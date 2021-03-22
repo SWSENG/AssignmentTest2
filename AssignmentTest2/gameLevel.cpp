@@ -1,3 +1,4 @@
+
 #include "gameLevel.h"
 #include"gameInput.h"
 #include<string>
@@ -12,7 +13,7 @@ gameLevel::gameLevel()
 	//collisionObject = new (collision);
 	line = NULL;
 
-	score = 10;
+	score = 0;
 	hp = 20;
 	scoreFont = NULL;
 	hpFont = NULL;
@@ -164,21 +165,10 @@ void gameLevel::fixedUpdate()
 			hp -= 1;
 			if (hp == 0)
 			{
-				//PostQuitMessage(0);
+				gameStateManager::getInstance()->changeGameState(3);
 			}
 		}
 	}
-	//for (int a = 0; a < 4; a++)
-	//{
-	//	if (checkCollision(drawEnemy->enemyPosition[a], drawEnemy->enemyRect[a], drawEnemy->enemyPosition[a], drawEnemy->enemyRect[a]))
-	//	{
-	//		drawEnemy->isEnemyMoving = false;
-	//		D3DXVECTOR2 velocity = drawEnemy->direction[a] * (drawEnemy->enemySpeed / 60.0f);
-	//		drawEnemy->enemyPosition[a] -= velocity;
-	//		int i = checkSideOfCollision(drawEnemy->enemyPosition[a], drawEnemy->enemyPosition[a]);
-	//		cout << i << endl;
-	//	}
-	//}
 	drawPlayer->fixedUpdate();
 	drawEnemy->fixedUpdate();
 	drawFlag->fixedUpdate();

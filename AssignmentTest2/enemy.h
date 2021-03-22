@@ -28,6 +28,7 @@ private:
 	float nextBouncingRight;
 	float nextBouncingTop;
 	float nextBouncingBottom;
+
 public:
 	enemy();
 	~enemy();
