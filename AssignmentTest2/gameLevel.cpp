@@ -3,13 +3,11 @@
 #include<string>
 #include<iostream>
 #include"gameStateManager.h"
-//#include"collision.h"
 
 using namespace std;
 
 gameLevel::gameLevel()
 {
-	//collisionObject = new (collision);
 	line = NULL;
 
 	setScore(0);
