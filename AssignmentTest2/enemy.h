@@ -34,10 +34,10 @@ public:
 	~enemy();
 
 	RECT sampleEnemyRect;
-	RECT enemyRect[4];
-	D3DXVECTOR2 enemyPosition[8];
+	RECT enemyRect[5];
+	D3DXVECTOR2 enemyPosition[5];
 	bool isEnemyMoving;
-	D3DXVECTOR2 direction[4];
+	D3DXVECTOR2 direction[5];
 	float enemySpeed;
 
 	void init();

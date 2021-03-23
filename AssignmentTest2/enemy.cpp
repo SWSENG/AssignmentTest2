@@ -22,7 +22,7 @@ enemy::enemy()
 	enemySpeed = (1.0f / enemyDuration) * 160;
 	enemyRow = 0;
 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		enemyRect[i] = sampleEnemyRect;
 	}
@@ -44,6 +44,10 @@ enemy::enemy()
 	enemyPosition[3].y = 1 + (rand() % 1000);
 	direction[3].x = -1;
 	direction[3].y = -1;
+	enemyPosition[4].x = 1 + (rand() % 1000);
+	enemyPosition[4].y = 1 + (rand() % 1000);
+	direction[4].x = -1;
+	direction[4].y = 1;
 }
 
 enemy::~enemy()
@@ -62,7 +66,7 @@ void enemy::init()
 void enemy::Update()
 {
 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		if (enemyPosition[i].x < 0)
 		{
@@ -93,9 +97,9 @@ void enemy::Update()
 
 void enemy::fixedUpdate()
 {
-	for (int a = 0; a < 4; a++)
+	for (int a = 0; a < 5; a++)
 	{ 
-		for (int b = 0; b < 4; b++)
+		for (int b = 0; b < 5; b++)
 		{
 			if (b == a)
 			{
@@ -115,18 +119,19 @@ void enemy::fixedUpdate()
 				{
 					direction[a].y *= -1;
 					direction[b].y *= 1;
-					cout << "hello" << endl;
+					cout << "y axis collide" << endl;
 				}
 				if (enemyRect[a].right > enemyRect[b].left ||
 					enemyRect[a].left < enemyRect[b].right)
 				{
 					direction[a].x *= -1;
 					direction[b].x *= 1;
+					cout << "x axis collide" << endl;
 				}
 			}
 		}
 	}
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		if (isEnemyMoving)
 		{
@@ -150,7 +155,7 @@ void enemy::fixedUpdate()
 void enemy::Draw()
 {
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		sprite->SetTransform(&mat);
 		D3DXMatrixTransformation2D(&mat, NULL, 0.0, &scaling, NULL, NULL, &enemyPosition[i]);

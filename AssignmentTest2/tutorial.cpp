@@ -48,6 +48,10 @@ void tutorial::Update()
 	{
 		gameStateManager::getInstance()->changeGameState(2);
 	}
+	if (GameInput::getInstance()->KeyboardKeyPressed(DIK_ESCAPE))
+	{
+		PostQuitMessage(0);
+	}
 }
 
 void tutorial::fixedUpdate()

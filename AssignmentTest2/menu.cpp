@@ -48,6 +48,10 @@ void gameMenu::Update()
 	{
 		gameStateManager::getInstance()->changeGameState(1);
 	}
+	if (GameInput::getInstance()->KeyboardKeyPressed(DIK_ESCAPE))
+	{
+		PostQuitMessage(0);
+	}
 }
 
 void gameMenu::Draw()

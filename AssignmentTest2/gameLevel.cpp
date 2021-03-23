@@ -12,8 +12,8 @@ gameLevel::gameLevel()
 	//collisionObject = new (collision);
 	line = NULL;
 
-	score = 0;
-	hp = 20;
+	setScore(0);
+	setHp(20);
 	scoreFont = NULL;
 	hpFont = NULL;
 
@@ -37,6 +37,26 @@ gameLevel::gameLevel()
 
 gameLevel::~gameLevel()
 {
+}
+
+gameLevel* gameLevel::instance = 0;
+
+gameLevel* gameLevel::getInstance()
+{
+	if (!instance)
+	{
+		instance = new gameLevel;
+	}
+
+	return instance;
+}
+
+void gameLevel::releaseInstance() {
+	if (instance != NULL)
+	{
+		delete instance;
+		instance = NULL;
+	}
 }
 
 bool gameLevel::checkCollision(D3DXVECTOR2 pos1, RECT rect1, D3DXVECTOR2 pos2, RECT rect2)
@@ -103,6 +123,26 @@ int gameLevel::checkSideOfCollision(D3DXVECTOR2 pos1, D3DXVECTOR2 pos2)
 	return 0;
 }
 
+int gameLevel::getScore()
+{
+	return this->score;
+}
+
+void gameLevel::setScore(int score)
+{
+	this->score = score;
+}
+
+int gameLevel::getHp()
+{
+	return this->hp;
+}
+
+void gameLevel::setHp(int hp)
+{
+	this->hp = hp;
+}
+
 void gameLevel::init()
 {
 	background = new GameBackround();
@@ -142,21 +182,22 @@ void gameLevel::Update()
 
 void gameLevel::fixedUpdate()
 {
-	for (int a = 0; a < 4; a++)
+	for (int a = 0; a < 5; a++)
 	{
 		if (checkCollision(drawPlayer->playerPosition, drawPlayer->spriteSize, drawFlag->flagPosition, drawFlag->flagRect))
 		{
 			drawFlag->flagPosition.x = 1 + (rand() % 1000);
 			drawFlag->flagPosition.y = 1 + (rand() % 1000);
 			cout << "flag collide" << endl;
-			cout << score << endl;
-			score += 10;
+			int i = gameLevel::getInstance()->getScore();
+			i += 10;
+			gameLevel::getInstance()->setScore(i);
 			D3DXVECTOR2 velocity = drawEnemy->direction[a] * (drawEnemy->enemySpeed / 60.0f);
-			drawEnemy->enemySpeed += 2;
+			drawEnemy->enemySpeed += 10;
 			cout << drawEnemy->enemySpeed << endl;
 		}
 	}
-	for (int a = 0; a < 4; a++)
+	for (int a = 0; a < 5; a++)
 	{
 		if (checkCollision(drawPlayer->playerPosition, drawPlayer->spriteSize, drawEnemy->enemyPosition[a], drawEnemy->sampleEnemyRect))
 		{
@@ -167,10 +208,13 @@ void gameLevel::fixedUpdate()
 			int i = checkSideOfCollision(drawPlayer->playerPosition, drawEnemy->enemyPosition[a]);
 			cout << i << endl;
 			cout << hp << endl;
-			hp -= 1;
-			if (hp == 0)
+			int x = gameLevel::getInstance()->getHp();
+			x -= 1;
+			gameLevel::getInstance()->setHp(x);
+			if (x == 0)
 			{
 				gameStateManager::getInstance()->changeGameState(3);
+				
 			}
 		}
 	}
@@ -191,17 +235,17 @@ void gameLevel::Draw()
 	line->Draw(enemyVertices, 5, D3DCOLOR_XRGB(100, 255, 120));
 	line->End();
 	drawFont->Draw();
+
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
 	sprite->SetTransform(&mat);
-
-	string str = to_string(score);
+	string str = to_string(gameLevel::getInstance()->getScore());
 	D3DXMatrixTransformation2D(&mat, NULL, 0.0, NULL, NULL, NULL, &font1Position);
 	scoreFont->DrawText(sprite, str.c_str(), -1, &textRect, DT_CENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255));
 	sprite->End();
 
 	sprite1->Begin(D3DXSPRITE_ALPHABLEND);
 	sprite1->SetTransform(&mat1);
-	string str2 = to_string(hp);
+	string str2 = to_string(gameLevel::getInstance()->getHp());
 	D3DXMatrixTransformation2D(&mat1, NULL, 0.0, NULL, NULL, NULL, &font2Position);
 	hpFont->DrawText(sprite1, str2.c_str(), -1, &textRect2, DT_CENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255));
 	sprite1->End();
@@ -233,3 +277,4 @@ void gameLevel::Release()
 	background->~GameBackround();
 	if (background) { delete background; background = nullptr; }
 }
+
