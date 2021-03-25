@@ -165,6 +165,13 @@ void gameLevel::init()
 	D3DXCreateFont(GameGraphic::getInstance()->device, 50, 0, 0, 1, false,
 		DEFAULT_CHARSET, OUT_TT_ONLY_PRECIS, DEFAULT_QUALITY,
 		DEFAULT_PITCH | FF_DONTCARE, "Arial", &hpFont);
+
+	sound->Init();
+	sound = new gameSound("sound/point.mp3", false);
+	sound->play();
+	hitByEnemysound->Init();
+	hitByEnemysound = new gameSound("sound/touchenemy.wav", false);
+	hitByEnemysound->play();
 }
 
 void gameLevel::Update()
@@ -193,6 +200,9 @@ void gameLevel::fixedUpdate()
 			D3DXVECTOR2 velocity = drawEnemy->direction[a] * (drawEnemy->enemySpeed / 60.0f);
 			drawEnemy->enemySpeed += 10;
 			cout << drawEnemy->enemySpeed << endl;
+			sound->play();
+			sound->volumeDown();
+			sound->Update();
 		}
 	}
 	for (int a = 0; a < 5; a++)
@@ -213,6 +223,9 @@ void gameLevel::fixedUpdate()
 			{
 				gameStateManager::getInstance()->changeGameState(3);
 			}
+			hitByEnemysound->play();
+			hitByEnemysound->volumeDown();
+			hitByEnemysound->Update();
 		}
 	}
 	drawPlayer->fixedUpdate();
@@ -250,6 +263,10 @@ void gameLevel::Draw()
 
 void gameLevel::Release()
 {
+	hitByEnemysound->Release();
+	hitByEnemysound = NULL;
+	sound->Release();
+	sound = NULL;
 	sprite1->Release();
 	sprite1 = NULL;
 	hpFont->Release();

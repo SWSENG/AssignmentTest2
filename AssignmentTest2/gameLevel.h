@@ -7,6 +7,7 @@
 #include"heart.h"
 #include"flag.h"
 #include"font.h"
+#include"gameSound.h"
 
 class gameLevel :public gameState
 {
@@ -19,6 +20,8 @@ private:
 	flag* drawFlag;
 	collision* collisionObject;
 	font* drawFont;
+	gameSound* sound;
+	gameSound* hitByEnemysound;
 
 	LPD3DXLINE line;
 	D3DXVECTOR2 playerVertices[5];

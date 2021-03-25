@@ -1,4 +1,5 @@
 #include "gameSound.h"
+#include <stdio.h>
 
 FMOD_SYSTEM* gameSound::g_sound_system;
 
@@ -60,7 +61,7 @@ int gameSound::resume()
 int gameSound::stop()
 {
 	FMOD_Channel_Stop(m_channel);
-
+	printf("stooooooooooooooooooooooooooop\n");
 	return 0;
 }
 

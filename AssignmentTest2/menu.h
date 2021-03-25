@@ -20,6 +20,7 @@ public:
 	gameMenu();
 	~gameMenu();
 
+	bool playMusic;
 	void init();
 	void Update();
 	void fixedUpdate();
