@@ -1,6 +1,7 @@
 #pragma once
 #include"gameState.h"
 #include"gameGraphic.h"
+#include"gameSound.h"
 
 class gameMenu :public gameState
 {
@@ -13,6 +14,8 @@ private:
 	RECT textRect;
 	D3DXVECTOR2 fontPosition;
 	D3DXMATRIX mat;
+
+	gameSound* sound;
 public:
 	gameMenu();
 	~gameMenu();

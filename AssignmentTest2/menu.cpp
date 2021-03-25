@@ -27,6 +27,8 @@ gameMenu::~gameMenu()
 
 void gameMenu::init()
 {
+	sound->Init();
+	sound = new gameSound("sound/menu.ogg", false);
 	D3DXCreateSprite(GameGraphic::getInstance()->device, &sprite);
 	D3DXCreateTextureFromFileEx(GameGraphic::getInstance()->device, "img/menu.png", D3DX_DEFAULT, D3DX_DEFAULT,
 		D3DX_DEFAULT, NULL, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED,
@@ -44,14 +46,18 @@ void gameMenu::init()
 
 void gameMenu::Update()
 {
+	sound->play();
+	sound->volumeDown();
 	if (GameInput::getInstance()->KeyboardKeyPressed(DIK_RETURN))
 	{
 		gameStateManager::getInstance()->changeGameState(1);
+		sound->stop();
 	}
 	if (GameInput::getInstance()->KeyboardKeyPressed(DIK_ESCAPE))
 	{
 		PostQuitMessage(0);
 	}
+	sound->Update();
 }
 
 void gameMenu::Draw()
@@ -65,8 +71,8 @@ void gameMenu::Draw()
 	D3DXMatrixTransformation2D(&mat, NULL, 0.0, NULL, NULL, NULL, &fontPosition);
 	font->DrawText(sprite1, "[PRESS ENTER TO START]", -1, &textRect, DT_CENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255));
 	sprite1->End();
-}
 
+}
 void gameMenu::fixedUpdate()
 {
 
@@ -84,4 +90,6 @@ void gameMenu::Release()
 	sprite1 = NULL;
 	font->Release();
 	font = NULL;
+	sound->Release();
+	sound = NULL;
 }

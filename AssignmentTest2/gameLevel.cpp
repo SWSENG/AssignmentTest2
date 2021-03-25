@@ -212,7 +212,6 @@ void gameLevel::fixedUpdate()
 			if (x == 0)
 			{
 				gameStateManager::getInstance()->changeGameState(3);
-				
 			}
 		}
 	}

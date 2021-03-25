@@ -4,6 +4,9 @@
 #include"tutorial.h"
 #include"gameOver.h"
 
+#include<iostream>
+using namespace std;
+
 gameStateManager::gameStateManager()
 {
 	gameMenu* firstpage = new gameMenu();
@@ -32,8 +35,8 @@ gameStateManager::~gameStateManager()
 	{
 		delete gameStateList[i];
 		gameStateList[i] = NULL;
+		gameStateList.erase(gameStateList.begin() + 2);
 	}
-
 	delete gametimer;
 	gametimer = NULL;
 }

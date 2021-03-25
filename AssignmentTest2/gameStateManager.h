@@ -6,8 +6,7 @@
 class gameStateManager
 {
 private:
-	gameStateManager();
-	~gameStateManager();
+
 
 	static gameStateManager* sInstance;
 	std::vector<gameState*> gameStateList;
@@ -23,6 +22,9 @@ public:
 	};
 	static gameStateManager* getInstance();
 	static void releaseInstance();
+
+	gameStateManager();
+	~gameStateManager();
 
 	void Update();
 	void Draw();

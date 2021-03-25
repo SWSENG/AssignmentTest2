@@ -75,6 +75,9 @@
     <ClInclude Include="gameOver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="gameSound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -135,6 +138,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gameOver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameSound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
