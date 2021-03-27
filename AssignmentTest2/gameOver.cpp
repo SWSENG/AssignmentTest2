@@ -37,10 +37,12 @@ void gameOver::init()
 	D3DXCreateFont(GameGraphic::getInstance()->device, 50, 0, 0, 1, false,
 		DEFAULT_CHARSET, OUT_TT_ONLY_PRECIS, DEFAULT_QUALITY,
 		DEFAULT_PITCH | FF_DONTCARE, "Arial", &scoreFont);
+	
 }
 
 void gameOver::Update()
 {
+		
 	if (GameInput::getInstance()->KeyboardKeyPressed(DIK_ESCAPE))
 	{
 		PostQuitMessage(0);
@@ -49,6 +51,7 @@ void gameOver::Update()
 	{
 		gameStateManager::getInstance()->changeGameState(0);
 	}
+
 }
 
 void gameOver::fixedUpdate()

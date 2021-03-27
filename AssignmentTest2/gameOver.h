@@ -1,6 +1,7 @@
 #pragma once
 #include"gameState.h"
 #include"gameGraphic.h"
+#include"gameSound.h"
 
 class gameOver :public gameState
 {

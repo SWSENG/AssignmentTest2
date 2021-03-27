@@ -6,8 +6,6 @@
 class gameStateManager
 {
 private:
-
-
 	static gameStateManager* sInstance;
 	std::vector<gameState*> gameStateList;
 	gameState* currentGameState;

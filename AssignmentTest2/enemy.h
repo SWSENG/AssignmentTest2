@@ -17,7 +17,7 @@ private:
 	int enemyCurrentFrame;
 	float enemyDuration;
 	float enemyTimer;
-	int enemyRow;
+	int enemyRow[5];
 
 	float currentBouncingLeft;
 	float currentBouncingRight;

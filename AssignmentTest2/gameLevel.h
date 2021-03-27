@@ -22,6 +22,7 @@ private:
 	font* drawFont;
 	gameSound* sound;
 	gameSound* hitByEnemysound;
+	gameSound* gameOverSound;
 
 	LPD3DXLINE line;
 	D3DXVECTOR2 playerVertices[5];

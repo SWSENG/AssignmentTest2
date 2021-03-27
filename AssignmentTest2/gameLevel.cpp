@@ -168,10 +168,10 @@ void gameLevel::init()
 
 	sound->Init();
 	sound = new gameSound("sound/point.mp3", false);
-	sound->play();
 	hitByEnemysound->Init();
 	hitByEnemysound = new gameSound("sound/touchenemy.wav", false);
-	hitByEnemysound->play();
+	gameOverSound->Init();
+	gameOverSound = new gameSound("sound/gameover.wav", false);
 }
 
 void gameLevel::Update()
@@ -198,11 +198,9 @@ void gameLevel::fixedUpdate()
 			i += 10;
 			gameLevel::getInstance()->setScore(i);
 			D3DXVECTOR2 velocity = drawEnemy->direction[a] * (drawEnemy->enemySpeed / 60.0f);
-			drawEnemy->enemySpeed += 10;
+			drawEnemy->enemySpeed += 5;
 			cout << drawEnemy->enemySpeed << endl;
 			sound->play();
-			sound->volumeDown();
-			sound->Update();
 		}
 	}
 	for (int a = 0; a < 5; a++)
@@ -222,15 +220,22 @@ void gameLevel::fixedUpdate()
 			if (x == 0)
 			{
 				gameStateManager::getInstance()->changeGameState(3);
+				gameOverSound->play();
+
 			}
 			hitByEnemysound->play();
-			hitByEnemysound->volumeDown();
-			hitByEnemysound->Update();
 		}
 	}
 	drawPlayer->fixedUpdate();
 	drawEnemy->fixedUpdate();
 	drawFlag->fixedUpdate();
+
+	sound->volumeDown();
+	sound->Update();
+	hitByEnemysound->volumeDown();
+	hitByEnemysound->Update();
+	gameOverSound->volumeDown();
+	gameOverSound->Update();
 }
 
 void gameLevel::Draw()
@@ -263,15 +268,17 @@ void gameLevel::Draw()
 
 void gameLevel::Release()
 {
+	gameOverSound->Release();
+	gameOverSound = NULL;
 	hitByEnemysound->Release();
 	hitByEnemysound = NULL;
 	sound->Release();
 	sound = NULL;
+
 	sprite1->Release();
 	sprite1 = NULL;
 	hpFont->Release();
 	hpFont = NULL;
-
 	sprite->Release();
 	sprite = NULL;
 	scoreFont->Release();
