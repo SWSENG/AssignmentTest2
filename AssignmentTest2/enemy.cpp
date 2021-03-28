@@ -27,28 +27,28 @@ enemy::enemy()
 	}
 
 	isEnemyMoving = true;
-	enemyPosition[0].x = 1 + (rand() % 1000);
-	enemyPosition[0].y = 1 + (rand() % 1000);
+	enemyPosition[0].x = 10;
+	enemyPosition[0].y = 50;
 	direction[0].x = 1;
 	direction[0].y = 1;
 	enemyRow[0] = 0;
-	enemyPosition[1].x = 1 + (rand() % 1000);
-	enemyPosition[1].y = 1 + (rand() % 1000);
+	enemyPosition[1].x = 200;
+	enemyPosition[1].y = 500;
 	direction[1].x = 1;
 	direction[1].y = -1;
 	enemyRow[1] = 0;
-	enemyPosition[2].x = 1 + (rand() % 1000);
-	enemyPosition[2].y = 1 + (rand() % 1000);
+	enemyPosition[2].x = 450;
+	enemyPosition[2].y = 20;
 	direction[2].x = -1;
 	direction[2].y = 1;
 	enemyRow[2] = 1;
-	enemyPosition[3].x = 1 + (rand() % 1000);
-	enemyPosition[3].y = 1 + (rand() % 1000);
+	enemyPosition[3].x = 700;
+	enemyPosition[3].y = 1000;
 	direction[3].x = -1;
 	direction[3].y = -1;
 	enemyRow[3] = 1;
-	enemyPosition[4].x = 1 + (rand() % 1000);
-	enemyPosition[4].y = 1 + (rand() % 1000);
+	enemyPosition[4].x = 600;
+	enemyPosition[4].y = 50;
 	direction[4].x = -1;
 	direction[4].y = 1;
 	enemyRow[4] = 1;
@@ -145,8 +145,8 @@ void enemy::fixedUpdate()
 				if (enemyRect[a].bottom > enemyRect[b].top || 
 					enemyRect[a].top < enemyRect[b].bottom)
 				{
-					direction[a].y *= -1;
-					direction[b].y *= 1;
+					direction[a].y *= 1;
+					direction[b].y *= -1;
 					cout << "y axis collide" << endl;
 				}
 				if (enemyRect[a].right > enemyRect[b].left ||

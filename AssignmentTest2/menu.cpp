@@ -21,6 +21,9 @@ gameMenu::gameMenu()
 	fontPosition.y = 800;
 
 	playMusic = false;
+
+	sound->Init();
+	sound = new gameSound("sound/menu.ogg", true);
 }
 
 gameMenu::~gameMenu()
@@ -29,8 +32,6 @@ gameMenu::~gameMenu()
 
 void gameMenu::init()
 {
-	sound->Init();
-	sound = new gameSound("sound/menu.ogg", true);
 	sound->play();
 	D3DXCreateSprite(GameGraphic::getInstance()->device, &sprite);
 	D3DXCreateTextureFromFileEx(GameGraphic::getInstance()->device, "img/menu.png", D3DX_DEFAULT, D3DX_DEFAULT,
@@ -59,6 +60,10 @@ void gameMenu::Update()
 	if (GameInput::getInstance()->KeyboardKeyPressed(DIK_ESCAPE))
 	{
 		PostQuitMessage(0);
+	}
+	if (GameInput::getInstance()->MouseButtonClick(DIMOFS_BUTTON0))
+	{
+
 	}
 }
 

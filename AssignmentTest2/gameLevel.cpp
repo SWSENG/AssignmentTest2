@@ -31,6 +31,13 @@ gameLevel::gameLevel()
 	font1Position.y = 20;
 	font2Position.x = 150;
 	font2Position.y = 40;
+
+	sound->Init();
+	sound = new gameSound("sound/point.mp3", false);
+	hitByEnemysound->Init();
+	hitByEnemysound = new gameSound("sound/touchenemy.wav", false);
+	gameOverSound->Init();
+	gameOverSound = new gameSound("sound/gameover.wav", false);
 }
 
 gameLevel::~gameLevel()
@@ -143,6 +150,30 @@ void gameLevel::setHp(int hp)
 
 void gameLevel::init()
 {
+	line = NULL;
+
+	setScore(0);
+	setHp(20);
+	scoreFont = NULL;
+	hpFont = NULL;
+
+	RECT textRect;
+	textRect.left = 100;
+	textRect.top = 100;
+	textRect.right = 150;
+	textRect.bottom = 125;
+
+	RECT textRect2;
+	textRect2.left = 100;
+	textRect2.top = 100;
+	textRect2.right = 150;
+	textRect2.bottom = 125;
+
+	font1Position.x = 1120;
+	font1Position.y = 20;
+	font2Position.x = 150;
+	font2Position.y = 40;
+
 	background = new GameBackround();
 	background->Initialize(GameGraphic::getInstance()->device, "img/background.png", 1200, 1700);
 	drawPlayer = new player();
@@ -165,13 +196,6 @@ void gameLevel::init()
 	D3DXCreateFont(GameGraphic::getInstance()->device, 50, 0, 0, 1, false,
 		DEFAULT_CHARSET, OUT_TT_ONLY_PRECIS, DEFAULT_QUALITY,
 		DEFAULT_PITCH | FF_DONTCARE, "Arial", &hpFont);
-
-	sound->Init();
-	sound = new gameSound("sound/point.mp3", false);
-	hitByEnemysound->Init();
-	hitByEnemysound = new gameSound("sound/touchenemy.wav", false);
-	gameOverSound->Init();
-	gameOverSound = new gameSound("sound/gameover.wav", false);
 }
 
 void gameLevel::Update()

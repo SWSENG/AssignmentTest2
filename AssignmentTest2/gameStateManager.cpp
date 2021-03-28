@@ -63,6 +63,7 @@ void gameStateManager::releaseInstance()
 void gameStateManager::changeGameState(int index)
 {
 	currentGameState = gameStateList[index];
+	currentGameState->init();
 }
 
 void gameStateManager::Update()

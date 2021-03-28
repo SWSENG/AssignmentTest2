@@ -8,9 +8,7 @@ private:
 	LPDIRECT3DTEXTURE9 texture;
 	LPD3DXSPRITE sprite;
 	D3DXMATRIX mat;
-	float rotation = 0;
 	int x = 0;
-	float directionX = 1;
 	D3DXVECTOR2 spriteCentre;
 	D3DXVECTOR2 scaling;
 	D3DXVECTOR2 enemySize;

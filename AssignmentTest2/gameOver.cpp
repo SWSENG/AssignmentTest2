@@ -49,6 +49,8 @@ void gameOver::Update()
 	}
 	if (GameInput::getInstance()->KeyboardKeyPressed(DIK_RETURN))
 	{
+		gameLevel::getInstance()->setScore(0);
+		gameLevel::getInstance()->setHp(20);
 		gameStateManager::getInstance()->changeGameState(0);
 	}
 
