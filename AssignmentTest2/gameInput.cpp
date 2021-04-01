@@ -5,21 +5,20 @@ GameInput* GameInput::instance = 0;
 
 GameInput::GameInput()
 {
-
     HRESULT result;
     DirectInput8Create(GetModuleHandle(NULL), 0x0800, IID_IDirectInput8, (void**)&dInput, NULL);
 
-    result = dInput->CreateDevice(GUID_SysKeyboard, &dInputKeyboardDevice, NULL);
+    result = dInput->CreateDevice(GUID_SysKeyboard, &dInputKeyboard, NULL);
 
-    dInputKeyboardDevice->SetDataFormat(&c_dfDIKeyboard);
-    dInputKeyboardDevice->SetCooperativeLevel(GameWin::getInstance()->g_hWnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
-    dInputKeyboardDevice->Acquire();
+    dInputKeyboard->SetDataFormat(&c_dfDIKeyboard);
+    dInputKeyboard->SetCooperativeLevel(GameWin::getInstance()->g_hWnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
+    dInputKeyboard->Acquire();
 
-    result = dInput->CreateDevice(GUID_SysMouse, &dInputMouseDevice, NULL);
+    result = dInput->CreateDevice(GUID_SysMouse, &dInputMouse, NULL);
 
-    dInputMouseDevice->SetDataFormat(&c_dfDIMouse);
-    dInputMouseDevice->SetCooperativeLevel(GameWin::getInstance()->g_hWnd, DISCL_FOREGROUND | DISCL_EXCLUSIVE);
-    dInputMouseDevice->Acquire();
+    dInputMouse->SetDataFormat(&c_dfDIMouse);
+    dInputMouse->SetCooperativeLevel(GameWin::getInstance()->g_hWnd, DISCL_FOREGROUND | DISCL_EXCLUSIVE);
+    dInputMouse->Acquire();
 
     mousePosition.x = 0;
     mousePosition.y = 0;
@@ -32,13 +31,13 @@ bool GameInput::ReadKeyboard()
 {
     HRESULT result;
     // Read the keyboard device.
-    result = dInputKeyboardDevice->GetDeviceState(sizeof(diKeys), (LPVOID)diKeys);
+    result = dInputKeyboard->GetDeviceState(sizeof(diKeys), (LPVOID)diKeys);
     if (FAILED(result))
     {
         // If the keyboard lost focus or was not acquired then try to get control back.
         if (result == DIERR_INPUTLOST || result == DIERR_NOTACQUIRED)
         {
-            dInputKeyboardDevice->Acquire();
+            dInputKeyboard->Acquire();
         }
         else
         {
@@ -53,15 +52,12 @@ bool GameInput::ReadMouse()
 {
     HRESULT result;
 
-
-    // Read the mouse device.
-    result = dInputMouseDevice->GetDeviceState(sizeof(DIMOUSESTATE), (LPVOID)&mouseState);
+    result = dInputMouse->GetDeviceState(sizeof(DIMOUSESTATE), (LPVOID)&mouseState);
     if (FAILED(result))
     {
-        // If the mouse lost focus or was not acquired then try to get control back.
         if (result == DIERR_INPUTLOST || result == DIERR_NOTACQUIRED)
         {
-            dInputMouseDevice->Acquire();
+            dInputMouse->Acquire();
         }
         else
         {
@@ -77,7 +73,7 @@ void GameInput::update()
     GameInput::ReadMouse();
     mousePosition.x += mouseState.lX;
     mousePosition.x = max(mousePosition.x, 0);
-    mousePosition.x = min(mousePosition.x, 1280); // screen sizes
+    mousePosition.x = min(mousePosition.x, 1080); // screen sizes
 
     mousePosition.y += mouseState.lY;
     mousePosition.y = max(mousePosition.y, 0);
@@ -100,7 +96,6 @@ bool GameInput::createInput()
     HRESULT result;
     DirectInput8Create(GetModuleHandle(NULL), 0x0800, IID_IDirectInput8, (void**)&dInput, NULL);
 
-    //keyboard
     LPDIRECTINPUTDEVICE8  dInputKeyboardDevice;
     result = dInput->CreateDevice(GUID_SysKeyboard, &dInputKeyboardDevice, NULL);
 
@@ -108,12 +103,10 @@ bool GameInput::createInput()
     {
         return false;
     }
-
     dInputKeyboardDevice->SetDataFormat(&c_dfDIKeyboard);
     dInputKeyboardDevice->SetCooperativeLevel(GameWin::getInstance()->g_hWnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
     dInputKeyboardDevice->Acquire();
 
-    //mouse
     LPDIRECTINPUTDEVICE8  dInputMouseDevice;
     result = dInput->CreateDevice(GUID_SysMouse, &dInputMouseDevice, NULL);
 
@@ -121,7 +114,6 @@ bool GameInput::createInput()
     {
         return false;
     }
-
     dInputMouseDevice->SetDataFormat(&c_dfDIMouse);
     dInputMouseDevice->SetCooperativeLevel(GameWin::getInstance()->g_hWnd, DISCL_FOREGROUND | DISCL_EXCLUSIVE);
     dInputMouseDevice->Acquire();
@@ -130,17 +122,14 @@ bool GameInput::createInput()
 }
 void GameInput::release()
 {
-    //    Release keyboard device.
-    dInputKeyboardDevice->Unacquire();
-    dInputKeyboardDevice->Release();
-    dInputKeyboardDevice = NULL;
+    dInputKeyboard->Unacquire();
+    dInputKeyboard->Release();
+    dInputKeyboard = NULL;
 
-    //    Release keyboard device.
-    dInputMouseDevice->Unacquire();
-    dInputMouseDevice->Release();
-    dInputMouseDevice = NULL;
+    dInputMouse->Unacquire();
+    dInputMouse->Release();
+    dInputMouse = NULL;
 
-    //    Release DirectInput.
     dInput->Release();
     dInput = NULL;
 }

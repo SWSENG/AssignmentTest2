@@ -23,7 +23,7 @@ gameMenu::gameMenu()
 	playMusic = false;
 
 	sound->Init();
-	sound = new gameSound("sound/menu.ogg", true);
+	sound = new gameSound("sound/menu1.mp3", true);
 }
 
 gameMenu::~gameMenu()
@@ -63,7 +63,7 @@ void gameMenu::Update()
 	}
 	if (GameInput::getInstance()->MouseButtonClick(DIMOFS_BUTTON0))
 	{
-
+		gameStateManager::getInstance()->changeGameState(1);
 	}
 }
 

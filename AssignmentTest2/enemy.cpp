@@ -65,11 +65,14 @@ void enemy::init()
 		D3DX_DEFAULT, NULL, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED,
 		D3DX_DEFAULT, D3DX_DEFAULT, D3DCOLOR_XRGB(255, 255, 255),
 		NULL, NULL, &texture);
+	D3DXCreateTextureFromFileEx(GameGraphic::getInstance()->device, "img/particle.png", D3DX_DEFAULT, D3DX_DEFAULT,
+		D3DX_DEFAULT, NULL, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED,
+		D3DX_DEFAULT, D3DX_DEFAULT, D3DCOLOR_XRGB(255, 255, 255),
+		NULL, NULL, &particle_texture);
 }
 
 void enemy::Update()
 {
-
 	for (int i = 0; i < 5; i++)
 	{
 		if (enemyPosition[i].x < 0)
@@ -101,6 +104,10 @@ void enemy::Update()
 			direction[i].x *= 1;
 			direction[i].y *= -1;
 		}
+	}
+	for (int i = 0; i < particleList.size(); i++)
+	{
+		particleList[i]->update();
 	}
 }
 
@@ -147,6 +154,17 @@ void enemy::fixedUpdate()
 				{
 					direction[a].y *= 1;
 					direction[b].y *= -1;
+					startParticle(enemyPosition[a]);
+					if ((direction[a].x == 1) || (direction[b].x == 1))
+					{
+						enemyRow[a] = 1;
+						enemyRow[b] = 1;
+					}
+					else
+					{
+						enemyRow[a] = 0;
+						enemyRow[b] = 0;
+					}
 					cout << "y axis collide" << endl;
 				}
 				if (enemyRect[a].right > enemyRect[b].left ||
@@ -154,6 +172,7 @@ void enemy::fixedUpdate()
 				{
 					direction[a].x *= -1;
 					direction[b].x *= 1;
+					startParticle(enemyPosition[a]);
 					enemyRow[a] = 0;
 					enemyRow[b] = 1;
 					cout << "x axis collide" << endl;
@@ -174,6 +193,10 @@ void enemy::Draw()
 		sprite->Draw(texture, &enemyRect[i], NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
 	}
 	sprite->End();
+	for (int i = 0; i < particleList.size(); i++)
+	{
+		particleList[i]->draw(sprite, particle_texture);
+	}
 }
 
 void enemy::Release()
@@ -232,4 +255,33 @@ int enemy::checkSideOfCollision(D3DXVECTOR2 pos1, D3DXVECTOR2 pos2)
 		}
 	}
 	return 0;
+}
+
+void enemy::startParticle(D3DXVECTOR2 position)
+{
+	for (int i = 0; i < 1; i++)
+	{
+		bool foundParticle = false;
+		for (int i = 0; i < particleList.size(); i++)
+		{
+			if (!particleList[i]->isUsing)
+			{
+				//printf("here\n");
+				/*D3DXVECTOR2 pos = D3DXVECTOR2(this->position.x, this->position.y);*/
+				particleList[i]->shoot(position);
+				foundParticle = true;
+			}
+		}
+		if (!foundParticle)
+		{
+			for (int i = 0; i < 5; i++)
+			{
+				/*D3DXVECTOR2 pos = D3DXVECTOR2(, this->position.y);*/
+				particle* Particle = new particle();
+				Particle->shoot(position);
+				particleList.push_back(Particle);
+			}
+		}
+
+	}
 }

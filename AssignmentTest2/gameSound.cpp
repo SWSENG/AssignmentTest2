@@ -61,7 +61,6 @@ int gameSound::resume()
 int gameSound::stop()
 {
 	FMOD_Channel_Stop(m_channel);
-	printf("stooooooooooooooooooooooooooop\n");
 	return 0;
 }
 

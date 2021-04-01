@@ -37,7 +37,7 @@ gameLevel::gameLevel()
 	hitByEnemysound->Init();
 	hitByEnemysound = new gameSound("sound/touchenemy.wav", false);
 	gameOverSound->Init();
-	gameOverSound = new gameSound("sound/gameover.wav", false);
+	gameOverSound = new gameSound("sound/gameover1.mp3", false);
 }
 
 gameLevel::~gameLevel()
@@ -196,6 +196,11 @@ void gameLevel::init()
 	D3DXCreateFont(GameGraphic::getInstance()->device, 50, 0, 0, 1, false,
 		DEFAULT_CHARSET, OUT_TT_ONLY_PRECIS, DEFAULT_QUALITY,
 		DEFAULT_PITCH | FF_DONTCARE, "Arial", &hpFont);
+
+	//D3DXCreateTextureFromFileEx(GameGraphic::getInstance()->device, "img/effect.png", D3DX_DEFAULT, D3DX_DEFAULT,
+	//	D3DX_DEFAULT, NULL, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED,
+	//	D3DX_DEFAULT, D3DX_DEFAULT, D3DCOLOR_XRGB(255, 255, 255),
+	//	NULL, NULL, &effect_texture);
 }
 
 void gameLevel::Update()
@@ -222,7 +227,7 @@ void gameLevel::fixedUpdate()
 			i += 10;
 			gameLevel::getInstance()->setScore(i);
 			D3DXVECTOR2 velocity = drawEnemy->direction[a] * (drawEnemy->enemySpeed / 60.0f);
-			drawEnemy->enemySpeed += 5;
+			drawEnemy->enemySpeed += 2;
 			cout << drawEnemy->enemySpeed << endl;
 			sound->play();
 		}
@@ -245,7 +250,6 @@ void gameLevel::fixedUpdate()
 			{
 				gameStateManager::getInstance()->changeGameState(3);
 				gameOverSound->play();
-
 			}
 			hitByEnemysound->play();
 		}
@@ -254,12 +258,19 @@ void gameLevel::fixedUpdate()
 	drawEnemy->fixedUpdate();
 	drawFlag->fixedUpdate();
 
+	//for (int i = 0; i < effectList.size(); i++)
+	//{
+	//	effectList[i]->update();
+	//}
+
 	sound->volumeDown();
 	sound->Update();
 	hitByEnemysound->volumeDown();
 	hitByEnemysound->Update();
 	gameOverSound->volumeDown();
 	gameOverSound->Update();
+
+
 }
 
 void gameLevel::Draw()
@@ -287,11 +298,19 @@ void gameLevel::Draw()
 	string str2 = to_string(gameLevel::getInstance()->getHp());
 	D3DXMatrixTransformation2D(&mat1, NULL, 0.0, NULL, NULL, NULL, &font2Position);
 	hpFont->DrawText(sprite1, str2.c_str(), -1, &textRect2, DT_CENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255));
+
+	//for (int i = 0; i < effectList.size(); i++)
+	//{
+	//	effectList[i]->draw(sprite);
+	//}
 	sprite1->End();
 }
 
 void gameLevel::Release()
 {
+	//effect::releaseAllEffect();
+	//effect_texture->Release();
+	//effect_texture = NULL;
 	gameOverSound->Release();
 	gameOverSound = NULL;
 	hitByEnemysound->Release();

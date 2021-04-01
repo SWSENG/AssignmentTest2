@@ -1,6 +1,8 @@
 #pragma once
 #include"gameGraphic.h"
 #include"collision.h"
+#include"particle.h"
+#include<vector>
 
 class enemy :public collision
 {
@@ -27,6 +29,8 @@ private:
 	float nextBouncingTop;
 	float nextBouncingBottom;
 
+	LPDIRECT3DTEXTURE9 particle_texture;
+	std::vector<particle*> particleList;
 public:
 	enemy();
 	~enemy();
@@ -46,5 +50,7 @@ public:
 
 	bool checkCollision(D3DXVECTOR2 pos1, RECT rect1, D3DXVECTOR2 pos2, RECT rect2);
 	int checkSideOfCollision(D3DXVECTOR2 pos1, D3DXVECTOR2 pos2);
+
+	void startParticle(D3DXVECTOR2 position);
 };
 

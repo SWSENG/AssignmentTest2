@@ -9,6 +9,7 @@
 #include"font.h"
 #include"gameSound.h"
 
+
 class gameLevel :public gameState
 {
 private:
@@ -40,6 +41,8 @@ private:
 	D3DXMATRIX mat1;
 	int hp;
 	int score;
+
+
 public:
 	gameLevel();
 	~gameLevel();

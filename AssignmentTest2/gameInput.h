@@ -8,8 +8,8 @@ class GameInput
 private:
     static GameInput* instance;
     LPDIRECTINPUT8 dInput;
-    LPDIRECTINPUTDEVICE8  dInputKeyboardDevice;
-    LPDIRECTINPUTDEVICE8  dInputMouseDevice;
+    LPDIRECTINPUTDEVICE8  dInputKeyboard;
+    LPDIRECTINPUTDEVICE8  dInputMouse;
     BYTE  diKeys[256];
     DIMOUSESTATE mouseState;
     int previousMouseState[3];
