@@ -74,8 +74,8 @@ void gameMenu::Draw()
 	sprite->Draw(texture1, NULL, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
 	sprite->End();
 	sprite1->Begin(D3DXSPRITE_ALPHABLEND);
-	sprite1->SetTransform(&mat);
 	D3DXMatrixTransformation2D(&mat, NULL, 0.0, NULL, NULL, NULL, &fontPosition);
+	sprite1->SetTransform(&mat);
 	font->DrawText(sprite1, "[PRESS ENTER TO START]", -1, &textRect, DT_CENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255));
 	sprite1->End();
 

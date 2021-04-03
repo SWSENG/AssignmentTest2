@@ -146,13 +146,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="collision.h" />
-    <ClInclude Include="effect.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="flag.h" />
     <ClInclude Include="font.h" />
     <ClInclude Include="gameBackground.h" />
-    <ClInclude Include="gameCamera.h" />
-    <ClInclude Include="gameEngine.h" />
     <ClInclude Include="gameGraphic.h" />
     <ClInclude Include="gameInput.h" />
     <ClInclude Include="gameLevel.h" />
@@ -170,14 +167,10 @@
     <ClInclude Include="tutorial.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="collision.cpp" />
-    <ClCompile Include="effect.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="flag.cpp" />
     <ClCompile Include="font.cpp" />
     <ClCompile Include="gameBackground.cpp" />
-    <ClCompile Include="gameCamera.cpp" />
-    <ClCompile Include="gameEngine.cpp" />
     <ClCompile Include="gameGraphic.cpp" />
     <ClCompile Include="gameInput.cpp" />
     <ClCompile Include="gameLevel.cpp" />
@@ -204,7 +197,6 @@
     <Image Include="C:\Users\HP\OneDrive\Desktop\game+controller+video+game+icon-1320087273514764593_32 (2).ico" />
     <Image Include="img\gameOver.png" />
     <Image Include="img\heart.png" />
-    <Image Include="img\monster1.1.png" />
     <Image Include="img\PlayerWalk.png" />
     <Image Include="img\tutorial.png" />
   </ItemGroup>
