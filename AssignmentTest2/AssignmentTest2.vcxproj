@@ -176,7 +176,6 @@
     <ClCompile Include="gameLevel.cpp" />
     <ClCompile Include="gameOver.cpp" />
     <ClCompile Include="gameSound.cpp" />
-    <ClCompile Include="gameSprite.cpp" />
     <ClCompile Include="gameStateManager.cpp" />
     <ClCompile Include="gameTime.cpp" />
     <ClCompile Include="heart.cpp" />

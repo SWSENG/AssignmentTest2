@@ -86,9 +86,6 @@
     <ClCompile Include="gameGraphic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gameSprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gameTime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
