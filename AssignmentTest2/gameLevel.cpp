@@ -76,17 +76,17 @@ bool gameLevel::checkCollision(D3DXVECTOR2 pos1, RECT rect1, D3DXVECTOR2 pos2, R
 	rect2.bottom = pos2.y + rect2.bottom - rect2.top;
 	rect2.top = pos2.y;
 
-	playerVertices[0] = D3DXVECTOR2(rect1.left, rect1.top);
-	playerVertices[1] = D3DXVECTOR2(rect1.right, rect1.top);
-	playerVertices[2] = D3DXVECTOR2(rect1.right, rect1.bottom);
-	playerVertices[3] = D3DXVECTOR2(rect1.left, rect1.bottom);
-	playerVertices[4] = D3DXVECTOR2(rect1.left, rect1.top);
+	//playerVertices[0] = D3DXVECTOR2(rect1.left, rect1.top);
+	//playerVertices[1] = D3DXVECTOR2(rect1.right, rect1.top);
+	//playerVertices[2] = D3DXVECTOR2(rect1.right, rect1.bottom);
+	//playerVertices[3] = D3DXVECTOR2(rect1.left, rect1.bottom);
+	//playerVertices[4] = D3DXVECTOR2(rect1.left, rect1.top);
 
-	enemyVertices[0] = D3DXVECTOR2(rect2.left, rect2.top);
-	enemyVertices[1] = D3DXVECTOR2(rect2.right, rect2.top);
-	enemyVertices[2] = D3DXVECTOR2(rect2.right, rect2.bottom);
-	enemyVertices[3] = D3DXVECTOR2(rect2.left, rect2.bottom);
-	enemyVertices[4] = D3DXVECTOR2(rect2.left, rect2.top);
+	//enemyVertices[0] = D3DXVECTOR2(rect2.left, rect2.top);
+	//enemyVertices[1] = D3DXVECTOR2(rect2.right, rect2.top);
+	//enemyVertices[2] = D3DXVECTOR2(rect2.right, rect2.bottom);
+	//enemyVertices[3] = D3DXVECTOR2(rect2.left, rect2.bottom);
+	//enemyVertices[4] = D3DXVECTOR2(rect2.left, rect2.top);
 
 
 	if (rect1.bottom < rect2.top) return false;

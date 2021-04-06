@@ -55,7 +55,7 @@ bool GameWin::createGameWindow()
 	RegisterClass(&wndClass);
 
 	//Create the Window.
-	g_hWnd = CreateWindowEx(0, wndClass.lpszClassName, "My Window's Name", WS_OVERLAPPEDWINDOW, 0, 100, SCREEN_WIDTH, SCREEN_HEIGHT, NULL, NULL, hInstance, NULL);
+	g_hWnd = CreateWindowEx(0, wndClass.lpszClassName, "Move", WS_OVERLAPPEDWINDOW, 0, 100, SCREEN_WIDTH, SCREEN_HEIGHT, NULL, NULL, hInstance, NULL);
 	ShowWindow(g_hWnd, 1);
 	ShowCursor(true);
 

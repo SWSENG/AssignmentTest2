@@ -16,7 +16,5 @@ public:
 	void shoot(D3DXVECTOR2 startPosition);
 	void update();
 	void draw(LPD3DXSPRITE sprite, LPDIRECT3DTEXTURE9 texture);
-
-private:
 };
 

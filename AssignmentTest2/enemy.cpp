@@ -266,8 +266,6 @@ void enemy::startParticle(D3DXVECTOR2 position)
 		{
 			if (!particleList[i]->isUsing)
 			{
-				//printf("here\n");
-				/*D3DXVECTOR2 pos = D3DXVECTOR2(this->position.x, this->position.y);*/
 				particleList[i]->shoot(position);
 				foundParticle = true;
 			}
@@ -276,7 +274,6 @@ void enemy::startParticle(D3DXVECTOR2 position)
 		{
 			for (int i = 0; i < 5; i++)
 			{
-				/*D3DXVECTOR2 pos = D3DXVECTOR2(, this->position.y);*/
 				particle* Particle = new particle();
 				Particle->shoot(position);
 				particleList.push_back(Particle);
