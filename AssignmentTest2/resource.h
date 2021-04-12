@@ -2,7 +2,7 @@
 // Microsoft Visual C++ generated include file.
 // Used by AssignmentTest2.rc
 //
-#define IDI_ICON1                       102
+//#define IDI_ICON1                       102
 #define IDC_CURSOR2                     103
 
 // Next default values for new objects

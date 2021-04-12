@@ -51,7 +51,7 @@ bool GameWin::createGameWindow()
 	wndClass.lpfnWndProc = WindowProcedure;
 	wndClass.lpszClassName = "My Window";
 	wndClass.style = CS_HREDRAW | CS_VREDRAW;
-	wndClass.hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
+	//wndClass.hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
 	RegisterClass(&wndClass);
 
 	//Create the Window.

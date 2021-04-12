@@ -70,7 +70,7 @@ IDC_CURSOR2             CURSOR                  "C:\\Windows\\Cursors\\aero_link
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON1               ICON                    "C:\\Users\\HP\\OneDrive\\Desktop\\game+controller+video+game+icon-1320087273514764593_32 (2).ico"
+//IDI_ICON1               ICON                    "C:\\Users\\HP\\OneDrive\\Desktop\\game+controller+video+game+icon-1320087273514764593_32 (2).ico"
 
 #endif    // English (Malaysia) resources
 /////////////////////////////////////////////////////////////////////////////
